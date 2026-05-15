@@ -129,8 +129,8 @@ if %ERRORLEVEL% neq 0 ( exit /b 1 )
 echo 3.13.13> "%EASY_TOOLS_DIR%\Python\Python_DefaultVersion.txt"
 
 if not exist "%PROJECT_SETUP_BAT%" (
-	echo "[ERROR] %PROJECT_SETUP_BAT% が見つかりません。"
-	echo "[ERROR] %PROJECT_SETUP_BAT% was not found."
+	echo "[ERROR] Setup-AnimaBaseV10.bat が見つかりません。"
+	echo "[ERROR] Setup-AnimaBaseV10.bat was not found."
 	pause & exit /b 1
 )
 call "%PROJECT_SETUP_BAT%"
@@ -165,6 +165,10 @@ if %ERRORLEVEL% neq 0 (
 
 echo git fetch
 git fetch
+if %ERRORLEVEL% neq 0 ( pause & popd & exit /b 1 )
+
+echo git pull --ff-only origin %INIT_REPO_BRANCH%
+git pull --ff-only origin %INIT_REPO_BRANCH%
 if %ERRORLEVEL% neq 0 ( pause & popd & exit /b 1 )
 
 exit /b 0
