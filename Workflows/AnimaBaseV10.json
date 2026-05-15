@@ -1,5 +1,5 @@
 {
-  "id": "anima-base-v10-minimum",
+  "id": "anima-base-v1.0-minimum",
   "revision": 0,
   "last_node_id": 10,
   "last_link_id": 10,
@@ -189,7 +189,7 @@
       ],
       "outputs": [],
       "properties": {"cnr_id": "comfy-core", "Node name for S&R": "SaveImage"},
-      "widgets_values": ["AnimaBaseV10"]
+      "widgets_values": ["anima-base-v1.0"]
     }
   ],
   "links": [
