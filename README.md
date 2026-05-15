@@ -53,7 +53,7 @@ NVIDIA ビデオカードを搭載した Windows PC で [ComfyUI](https://github
 	- `sageattention`
 		- インストールに失敗しても、基本セットアップは続行します。
 - Anima Base v1.0 のモデルファイルを配置します。
-	- `ComfyUI/models/diffusion_models/anima-base-v1.0.safetensors`
+	- `ComfyUI/models/diffusion_models/anima_baseV10.safetensors`
 	- `ComfyUI/models/text_encoders/qwen_3_06b_base.safetensors`
 	- `ComfyUI/models/vae/qwen_image_vae.safetensors`
 

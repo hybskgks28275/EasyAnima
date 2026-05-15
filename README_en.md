@@ -53,7 +53,7 @@ The `AnimaBase` branch and the Anima Base v1.0 changes in this fork are develope
 	- `sageattention`
 		- If installation fails, the base setup continues.
 - Places the Anima Base v1.0 model files.
-	- `ComfyUI/models/diffusion_models/anima-base-v1.0.safetensors`
+	- `ComfyUI/models/diffusion_models/anima_baseV10.safetensors`
 	- `ComfyUI/models/text_encoders/qwen_3_06b_base.safetensors`
 	- `ComfyUI/models/vae/qwen_image_vae.safetensors`
 

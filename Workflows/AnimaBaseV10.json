@@ -1,5 +1,5 @@
 {
-  "id": "anima-base-v10-minimum",
+  "id": "anima_baseV10-minimum",
   "revision": 0,
   "last_node_id": 10,
   "last_link_id": 10,
@@ -20,7 +20,7 @@
         {"name": "MODEL", "type": "MODEL", "links": [1]}
       ],
       "properties": {"cnr_id": "comfy-core", "Node name for S&R": "UNETLoader"},
-      "widgets_values": ["anima-base-v1.0.safetensors", "default"]
+      "widgets_values": ["anima_baseV10.safetensors", "default"]
     },
     {
       "id": 2,
@@ -189,7 +189,7 @@
       ],
       "outputs": [],
       "properties": {"cnr_id": "comfy-core", "Node name for S&R": "SaveImage"},
-      "widgets_values": ["AnimaBaseV10"]
+      "widgets_values": ["anima_baseV10"]
     }
   ],
   "links": [
