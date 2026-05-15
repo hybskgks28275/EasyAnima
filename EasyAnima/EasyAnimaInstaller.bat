@@ -1,17 +1,17 @@
 @echo off
 chcp 65001 > NUL
 
-set "PROJECT_NAME=SimpleComfyUi"
-set "PROJECT_SETUP_BAT=%~dp0%PROJECT_NAME%\Setup.bat"
+set "PROJECT_NAME=EasyAnima"
+set "PROJECT_SETUP_BAT=%~dp0Setup-AnimaBaseV10.bat"
 @REM set "PROJECT_MODEL_DOWNLOAD_BAT=%~dp0Download.bat"
 
-set PROJECT_URL=https://github.com/Zuntan03/%PROJECT_NAME%
+set PROJECT_URL=https://github.com/hybskgks28275/%PROJECT_NAME%
 set PROJECT_BRANCH=main
 set "PROJECT_DIR=%~dp0."
 set "EASY_TOOLS_DIR=%~dp0EasyTools"
 
 set "EASY_GIT_DIR=%EASY_TOOLS_DIR%\Git"
-set EASY_TOOLS_URL=https://github.com/Zuntan03/EasyTools
+set EASY_TOOLS_URL=https://github.com/hybskgks28275/EasyTools
 set EASY_TOOLS_BRANCH=main
 
 if not exist "C:\Windows\System32\where.exe" (
@@ -126,10 +126,10 @@ if %ERRORLEVEL% neq 0 ( exit /b 1 )
 call %EASY_TOOLS_DIR%\ComfyUi\ComfyUi_LatestVersion.bat
 call %EASY_TOOLS_DIR%\ComfyUi\ComfyUiManager_LatestVersion.bat
 
-@REM Python 3.10系を利用したい場合はコメント解除してから実行してください。
-@REM If you want to use Python 3.10 series, please uncomment the following line.
+@REM Python 3.13系を利用します。
+@REM Use Python 3.13 series.
 
-@REM echo 3.10.6> "%EASY_TOOLS_DIR%\Python\Python_DefaultVersion.txt"
+echo 3.13.13> "%EASY_TOOLS_DIR%\Python\Python_DefaultVersion.txt"
 
 call %PROJECT_SETUP_BAT%
 if %ERRORLEVEL% neq 0 ( exit /b 1 )

@@ -1,67 +1,92 @@
-﻿# SimpleComfyUi
+# EasyAnima
 
 [English README](README_en.md)
 
-NVIDIA ビデオカードを搭載した Windows PC で [ComfyUI](https://github.com/comfyanonymous/ComfyUI) と [ComfyUI Manager](https://github.com/Comfy-Org/ComfyUI-Manager) を `venv` で [マニュアルインストール](https://github.com/comfyanonymous/ComfyUI?tab=readme-ov-file#manual-install-windows-linux) します。
+NVIDIA ビデオカードを搭載した Windows PC で [ComfyUI](https://github.com/comfyanonymous/ComfyUI) と [ComfyUI Manager](https://github.com/Comfy-Org/ComfyUI-Manager) を `venv` で [マニュアルインストール](https://github.com/comfyanonymous/ComfyUI?tab=readme-ov-file#manual-install-windows-linux) し、[Anima Base v1.0](https://huggingface.co/circlestone-labs/Anima) を最低限生成できる状態にします。
 
-他のカスタムノードのインストールやモデルのダウンロードはしません。
+`Setup-AnimaBaseV10.bat` で Anima Base v1.0 のモデル、Qwen3 text encoder、Qwen-Image VAE、最小 workflow を配置します。
+
+## 謝辞と問い合わせについて
+
+この fork は [Zuntan03/SimpleComfyUi](https://github.com/Zuntan03/SimpleComfyUi) と [Zuntan03/EasyTools](https://github.com/Zuntan03/EasyTools) を元にしています。元リポジトリを公開・保守されている zuntan 氏に感謝します。
+
+この `AnimaBase` ブランチおよび Anima Base v1.0 向けの変更は hybskgks28275 が開発・保守しています。この fork 版に関する質問、不具合報告、要望を zuntan 氏へ問い合わせないでください。
 
 ## Portable Package との主な違い
 
 - `ComfyUI Manager` をインストールします。
-- `triton` や `SageAttention` をインストールします。
+- Python 3.13 系の `venv` を利用します。
+- PyTorch 2.11.0+cu130、`triton-windows`、SageAttention を導入します。
 - `python_embeded` 直接でなく `venv` 経由で利用します。
 
 ## インストール方法
 
-1. [SimpleComfyUiInstaller.bat](https://github.com/Zuntan03/SimpleComfyUi/raw/main/SimpleComfyUi/SimpleComfyUiInstaller.bat?ver=0) を右クリックから保存します。
-2. インストール先の **空フォルダ** を `C:/SimpleComfyUi/` や `D:/SimpleComfyUi/` などの浅いパスに用意して、ここに `SimpleComfyUiInstaller.bat` を移動して実行します。
+1. [EasyAnimaInstaller.bat](https://github.com/hybskgks28275/EasyAnima/raw/main/EasyAnima/EasyAnimaInstaller.bat?ver=0) を右クリックから保存します。
+2. インストール先の **空フォルダ** を `C:/EasyAnima/` や `D:/EasyAnima/` などの浅いパスに用意して、ここに `EasyAnimaInstaller.bat` を移動して実行します。
 	- **`発行元を確認できませんでした。このソフトウェアを実行しますか？` と表示されたら `実行` します。**
 	- **`WindowsによってPCが保護されました` と表示されたら、`詳細表示` から `実行` します。**
 	- **`Microsoft Visual C++ 2015-2022 Redistributable` のインストールで `このアプリがデバイスに変更を加えることを許可しますか？` と表示されたら `はい` とします。**
 
 ## 使い方
 
-- `ComfyUi.bat` で起動します。
+- `ComfyUi-Anima.bat` で Anima 向けに起動します。
 	- 初回起動時にブラウザキャッシュにある過去のワークフローが開かれ、エラーになる場合があります。エラーを無視してワークフローを閉じてください。
+- `ComfyUi.bat` でも通常起動できます。
+- `Setup-AnimaBaseV10.bat` で ComfyUI の更新と Anima Base v1.0 のモデル配置を行います。
+- `Setup-AnimaTurboV01.bat` で高速生成用のカスタムノード、Turbo LoRA、Civitai workflow zip を追加します。
 - `Update.bat` で更新します。
+	- `Update.bat` は `git pull --ff-only` で fast-forward 更新します。
 	- `Update.bat` の実行前に `EasyTools/ComfyUi/` にある `ComfyUi_LatestVersion.bat` や `ComfyUiManager_LatestVersion.bat` を実行しておくと、その時点での最新リリースバージョンに更新できます。
 
 ## 仕様
 
 - `ComfyUi_Activate.bat` で `venv\Scripts\activate` したコンソールを開きます。
 - Git にパスが通っていれば利用し、無ければポータブル版をインストールします。
-- Python は 3.10.x にパスが通っていれば利用し、無ければポータブル版をインストールします。
+- Python は 3.13.x にパスが通っていれば利用し、無ければポータブル版をインストールします。
 - ComfyUI と ComfyUI Manager は、インストール時にリリースされている最新バージョンをインストールします。
 	- バージョンを変更したい場合は `EasyTools/ComfyUi/` にある `ComfyUi-Version.txt` と `ComfyUiManager-Version.txt` の内容をリリース済みバージョンに変更してください。
 	- `ComfyUi-Version.txt` や `ComfyUiManager-Version.txt` を削除すると、リポジトリの最新リビジョンに更新します。
 - `pip` で `venv` に各種モジュールをインストールします。
-	- `torch`, `torchvision`, `torchaudio`
-	- `triton`, `sageattention`
+	- `torch==2.11.0+cu130`
+	- `torchvision==0.26.0+cu130`
+	- `torchaudio==2.11.0+cu130`
+	- `triton-windows==3.6.0.post26`
+	- `sageattention`
+		- インストールに失敗しても、基本セットアップは続行します。
+- Anima Base v1.0 のモデルファイルを配置します。
+	- `ComfyUI/models/diffusion_models/anima-base-v1.0.safetensors`
+	- `ComfyUI/models/text_encoders/qwen_3_06b_base.safetensors`
+	- `ComfyUI/models/vae/qwen_image_vae.safetensors`
 
-<!--
-README.md を英訳して、更新箇所に合わせて README_en.md を更新します。主に『主な更新』を更新します。
--->
+## Anima Base v1.0 の初期検証
+
+- 最小 workflow は `ComfyUI/user/default/workflows/AnimaBaseV10.json` に配置されます。
+- 初期検証は `896x1152`, steps `30`, CFG `4` を想定しています。
+- 8GB VRAM で重い場合は、解像度や batch size を下げてください。
+
+## 高速生成用セットアップ
+
+`Setup-AnimaTurboV01.bat` は以下を追加します。
+
+- カスタムノード
+	- `hybskgks28275/ComfyUI-Anima-NAG`
+	- `AdamNizol/ComfyUI-Anima-Enhancer`
+- LoRA
+	- `ComfyUI/models/loras/anima-turbo-lora-v0.1.safetensors`
+- workflow
+	- `ComfyUI/user/default/workflows/workflowForSDXLNoobaiXL_animaTurboLoraNAG.zip`
+	- zip は同じフォルダへ展開後に削除します。
 
 ## 主な更新
 
-### 2025/09/23
+### 2026/05/15
 
--  [Qwen-Image-Edit-2509](https://huggingface.co/Qwen/Qwen-Image-Edit-2509) を簡単に試せる `Setup-QwenImageEdit2509.bat` を追加しました。
-	- セットアップの実行後に、ワークフローの `QwenImageEdit2509.json` で QwenImageEdit を利用できます。
-	- 主に緑色のノードを操作します。
-	- `TranslatePrompt` は日本語プロンプトを英訳します。
-	- 旬が過ぎたら削除します。
-
-### 2025/09/20
-
-- デフォルトのバージョンを安定動作に実績のあるバージョンに変更しました。
-	- Python 3.10
-	- PyTorch 2.7.1+cu2.8.0
-	- SageAttention をコマンドラインオプションから削除。
-		- ノードで有効にするか、`ComfyUi.bat` を別名コピーして、引数に `--use-sage-attention` を追加。
+- `SimpleComfyUi` をフォークし、プロジェクト名を `EasyAnima` に変更して、Anima Base v1.0 の最低生成環境向けに `AnimaBase` ブランチを追加しました。
+	- Python 3.13 系、PyTorch 2.11.0+cu130、triton-windows 3.6 系を既定にしました。
+	- Anima Base v1.0 のモデル配置、最小 workflow、高速生成用セットアップを追加しました。
+	- `Update.bat` を `git reset --hard` ではなく fast-forward 更新に変更しました。
 
 ## ライセンス
 
-このリポジトリの内容は [MIT License](./LICENSE.txt) です。  
+このリポジトリの内容は [MIT License](./LICENSE.txt) です。
 別途ライセンスファイルがあるフォルダ以下は、そのライセンスです。
