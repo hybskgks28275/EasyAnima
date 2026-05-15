@@ -12,16 +12,20 @@ if not exist "%~dp0ComfyUI\models\vae\" ( mkdir "%~dp0ComfyUI\models\vae" )
 if not exist "%~dp0ComfyUI\user\default\workflows\" ( mkdir "%~dp0ComfyUI\user\default\workflows" )
 
 pushd "%~dp0ComfyUI\models\diffusion_models"
-if exist anima-base-v1.0.safetensors ( goto :EXIST_ANIMA_BASE )
+if exist anima_baseV10.safetensors ( goto :EXIST_ANIMA_BASE )
+if exist anima-base-v1.0.safetensors (
+	ren anima-base-v1.0.safetensors anima_baseV10.safetensors
+	goto :EXIST_ANIMA_BASE
+)
 if exist anima.safetensors (
-	ren anima.safetensors anima-base-v1.0.safetensors
+	ren anima.safetensors anima_baseV10.safetensors
 	goto :EXIST_ANIMA_BASE
 )
 if exist anima-preview.safetensors (
-	ren anima-preview.safetensors anima-base-v1.0.safetensors
+	ren anima-preview.safetensors anima_baseV10.safetensors
 	goto :EXIST_ANIMA_BASE
 )
-call "%HUGGING_FACE%" .\ anima-base-v1.0.safetensors circlestone-labs/Anima split_files/diffusion_models/
+call "%HUGGING_FACE%" .\ anima_baseV10.safetensors circlestone-labs/Anima split_files/diffusion_models/
 if %ERRORLEVEL% neq 0 ( popd & exit /b 1 )
 :EXIST_ANIMA_BASE
 popd rem "%~dp0ComfyUI\models\diffusion_models"
