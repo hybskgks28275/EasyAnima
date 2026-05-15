@@ -15,8 +15,8 @@ if %ERRORLEVEL% neq 0 ( popd & exit /b 1 )
 @REM if %ERRORLEVEL% neq 0 ( pause & popd & exit /b 1 )
 
 @REM ComfyUI-Impact-Pack\requirements.txt
-echo pip install -qq numpy==1.26.4 opencv-python-headless==4.11.0.86 opencv-contrib-python==4.11.0.86 opencv-python==4.11.0.86
-pip install -qq numpy==1.26.4 opencv-python-headless==4.11.0.86 opencv-contrib-python==4.11.0.86 opencv-python==4.11.0.86
+echo pip install -qq numpy==2.2.6 opencv-python-headless==4.12.0.88 opencv-contrib-python==4.12.0.88 opencv-python==4.12.0.88
+pip install -qq numpy==2.2.6 opencv-python-headless==4.12.0.88 opencv-contrib-python==4.12.0.88 opencv-python==4.12.0.88
 if %ERRORLEVEL% neq 0 ( pause & popd & exit /b 1 )
 
 @REM https://github.com/Zuntan03/EasyWan22/issues/1 Python 3.12.x, ModuleNotFoundError: No module named 'yaml'
