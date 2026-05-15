@@ -36,7 +36,6 @@ NVIDIA ビデオカードを搭載した Windows PC で [ComfyUI](https://github
 - `Setup-AnimaTurboV01.bat` で高速生成用のカスタムノード、Turbo LoRA、Civitai workflow zip を追加します。
 - `Update.bat` で更新します。
 	- `Update.bat` は `git pull --ff-only` で fast-forward 更新します。
-	- `Update.bat` の実行前に `EasyTools/ComfyUi/` にある `ComfyUi_LatestVersion.bat` や `ComfyUiManager_LatestVersion.bat` を実行しておくと、その時点での最新リリースバージョンに更新できます。
 
 ## 仕様
 

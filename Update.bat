@@ -38,5 +38,5 @@ if %ERRORLEVEL% neq 0 (
 )
 popd
 
-call %~dp0Setup-AnimaBaseV10.bat
+call "%~dp0Setup-AnimaBaseV10.bat"
 if %ERRORLEVEL% neq 0 ( exit /b 1 )

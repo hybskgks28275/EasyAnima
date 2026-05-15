@@ -36,7 +36,6 @@ The `AnimaBase` branch and the Anima Base v1.0 changes in this fork are develope
 - Run `Setup-AnimaTurboV01.bat` to add fast-generation custom nodes, Turbo LoRA, and the Civitai workflow zip.
 - Update with `Update.bat`.
 	- `Update.bat` uses `git pull --ff-only` for fast-forward updates.
-	- Before running `Update.bat`, execute `ComfyUi_LatestVersion.bat` or `ComfyUiManager_LatestVersion.bat` in `EasyTools/ComfyUi/` to update to the latest release version at that time.
 
 ## Specifications
 

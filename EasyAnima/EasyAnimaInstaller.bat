@@ -123,15 +123,17 @@ if %ERRORLEVEL% neq 0 ( exit /b 1 )
 call :INIT_REPO %PROJECT_DIR% %PROJECT_URL% %PROJECT_BRANCH%
 if %ERRORLEVEL% neq 0 ( exit /b 1 )
 
-call %EASY_TOOLS_DIR%\ComfyUi\ComfyUi_LatestVersion.bat
-call %EASY_TOOLS_DIR%\ComfyUi\ComfyUiManager_LatestVersion.bat
-
 @REM Python 3.13系を利用します。
 @REM Use Python 3.13 series.
 
 echo 3.13.13> "%EASY_TOOLS_DIR%\Python\Python_DefaultVersion.txt"
 
-call %PROJECT_SETUP_BAT%
+if not exist "%PROJECT_SETUP_BAT%" (
+	echo "[ERROR] %PROJECT_SETUP_BAT% が見つかりません。"
+	echo "[ERROR] %PROJECT_SETUP_BAT% was not found."
+	pause & exit /b 1
+)
+call "%PROJECT_SETUP_BAT%"
 if %ERRORLEVEL% neq 0 ( exit /b 1 )
 
 @REM if /i "%DOWNLOAD_MODEL_YES_OR_NO%" == "n" ( goto :FINALIZE )
@@ -163,10 +165,6 @@ if %ERRORLEVEL% neq 0 (
 
 echo git fetch
 git fetch
-if %ERRORLEVEL% neq 0 ( pause & popd & exit /b 1 )
-
-echo "git switch %INIT_REPO_BRANCH% 2>NUL || git checkout -b %INIT_REPO_BRANCH%"
-git switch %INIT_REPO_BRANCH% 2>NUL || git checkout -b %INIT_REPO_BRANCH%
 if %ERRORLEVEL% neq 0 ( pause & popd & exit /b 1 )
 
 exit /b 0
