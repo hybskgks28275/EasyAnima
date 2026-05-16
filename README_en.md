@@ -21,18 +21,41 @@ This fork and the Anima Base v1.0 changes are developed and maintained by hybskg
 
 ## Installation
 
+### Anima Base v1.0 Only
+
 1. Right-click and save [EasyAnimaInstaller.bat](https://github.com/hybskgks28275/EasyAnima/raw/main/EasyAnima/EasyAnimaInstaller.bat?ver=0).
 2. Prepare an **empty folder** at a shallow path like `C:/EasyAnima/` or `D:/EasyAnima/` as the installation destination, move `EasyAnimaInstaller.bat` here and run it.
 	- **If you see `Publisher could not be verified. Do you want to run this software?`, click `Run`.**
 	- **If you see `Windows protected your PC`, click `More info` then `Run anyway`.**
 	- **If you see `Do you want to allow this app to make changes to your device?` during `Microsoft Visual C++ 2015-2022 Redistributable` installation, click `Yes`.**
 
+If you only want to use Anima Base v1.0, running `EasyAnimaInstaller.bat` is enough.
+
+### All-in-One Installation
+
+If you want to use all sample workflows, run `EasyAnima/AllInOne.bat` after `EasyAnimaInstaller.bat` finishes.
+
+`AllInOne.bat` adds the following files on top of `Setup-AnimaBaseV10.bat`.
+
+- Custom nodes
+	- `hybskgks28275/ComfyUI-Anima-NAG`
+	- `AdamNizol/ComfyUI-Anima-Enhancer`
+	- `Comfy-Org/Nvidia_RTX_Nodes_ComfyUI`
+	- `ltdrdata/ComfyUI-Impact-Pack`
+	- `ltdrdata/was-node-suite-comfyui`
+	- `spacepxl/ComfyUI-Image-Filters`
+- LoRA
+	- `ComfyUI/models/loras/anima-turbo-lora-v0.1.safetensors`
+- checkpoint
+	- `ComfyUI/models/checkpoints/sam3.1_multiplex_fp16.safetensors`
+- workflow
+	- Copies `Workflows/*.json` to `ComfyUI/user/default/workflows`.
+
 ## Usage
 
 - Launch with `ComfyUi.bat`.
 	- On first launch, past workflows in browser cache may open and cause errors. Please ignore the errors and close the workflow.
 - Run `Setup-AnimaBaseV10.bat` to update ComfyUI and place the Anima Base v1.0 files.
-- Run `AllInOne.bat` to add extra custom nodes, Turbo LoRA, the SAM 3.1 checkpoint, and extra workflows.
 - Update with `Update.bat`.
 	- `Update.bat` uses `git pull --ff-only` for fast-forward updates.
 
@@ -76,24 +99,6 @@ This fork and the Anima Base v1.0 changes are developed and maintained by hybskg
 - `Upscale.json`
 	- Sample workflow for loading an image, encoding it back to latent, regenerating it, and upscaling with RTX Video Super Resolution.
 	- Uses `Nvidia_RTX_Nodes_ComfyUI`.
-
-## All-in-One Setup
-
-`AllInOne.bat` adds the following files on top of `Setup-AnimaBaseV10.bat`.
-
-- Custom nodes
-	- `hybskgks28275/ComfyUI-Anima-NAG`
-	- `AdamNizol/ComfyUI-Anima-Enhancer`
-	- `Comfy-Org/Nvidia_RTX_Nodes_ComfyUI`
-	- `ltdrdata/ComfyUI-Impact-Pack`
-	- `ltdrdata/was-node-suite-comfyui`
-	- `spacepxl/ComfyUI-Image-Filters`
-- LoRA
-	- `ComfyUI/models/loras/anima-turbo-lora-v0.1.safetensors`
-- checkpoint
-	- `ComfyUI/models/checkpoints/sam3.1_multiplex_fp16.safetensors`
-- workflow
-	- Copies `Workflows/*.json` to `ComfyUI/user/default/workflows`.
 
 ## Major Updates
 

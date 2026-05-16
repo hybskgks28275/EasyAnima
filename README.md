@@ -21,18 +21,41 @@ NVIDIA ビデオカードを搭載した Windows PC で [ComfyUI](https://github
 
 ## インストール方法
 
+### Anima Base v1.0 のみ使う場合
+
 1. [EasyAnimaInstaller.bat](https://github.com/hybskgks28275/EasyAnima/raw/main/EasyAnima/EasyAnimaInstaller.bat?ver=0) を右クリックから保存します。
 2. インストール先の **空フォルダ** を `C:/EasyAnima/` や `D:/EasyAnima/` などの浅いパスに用意して、ここに `EasyAnimaInstaller.bat` を移動して実行します。
 	- **`発行元を確認できませんでした。このソフトウェアを実行しますか？` と表示されたら `実行` します。**
 	- **`WindowsによってPCが保護されました` と表示されたら、`詳細表示` から `実行` します。**
 	- **`Microsoft Visual C++ 2015-2022 Redistributable` のインストールで `このアプリがデバイスに変更を加えることを許可しますか？` と表示されたら `はい` とします。**
 
+Anima Base v1.0 だけを使う場合は、`EasyAnimaInstaller.bat` の実行だけで完了です。
+
+### All-in-One インストール
+
+全てのサンプル workflow を使いたい場合は、`EasyAnimaInstaller.bat` の完了後に `EasyAnima/AllInOne.bat` を実行します。
+
+`AllInOne.bat` は `Setup-AnimaBaseV10.bat` の内容に加えて、以下を追加します。
+
+- カスタムノード
+	- `hybskgks28275/ComfyUI-Anima-NAG`
+	- `AdamNizol/ComfyUI-Anima-Enhancer`
+	- `Comfy-Org/Nvidia_RTX_Nodes_ComfyUI`
+	- `ltdrdata/ComfyUI-Impact-Pack`
+	- `ltdrdata/was-node-suite-comfyui`
+	- `spacepxl/ComfyUI-Image-Filters`
+- LoRA
+	- `ComfyUI/models/loras/anima-turbo-lora-v0.1.safetensors`
+- checkpoint
+	- `ComfyUI/models/checkpoints/sam3.1_multiplex_fp16.safetensors`
+- workflow
+	- `Workflows/*.json` を `ComfyUI/user/default/workflows` にコピーします。
+
 ## 使い方
 
 - `ComfyUi.bat` で起動します。
 	- 初回起動時にブラウザキャッシュにある過去のワークフローが開かれ、エラーになる場合があります。エラーを無視してワークフローを閉じてください。
 - `Setup-AnimaBaseV10.bat` で ComfyUI の更新と Anima Base v1.0 のモデル配置を行います。
-- `AllInOne.bat` で追加カスタムノード、Turbo LoRA、SAM 3.1 checkpoint、追加 workflow を配置します。
 - `Update.bat` で更新します。
 	- `Update.bat` は `git pull --ff-only` で fast-forward 更新します。
 
@@ -76,24 +99,6 @@ NVIDIA ビデオカードを搭載した Windows PC で [ComfyUI](https://github
 - `Upscale.json`
 	- 読み込んだ画像を latent に戻して再生成し、RTX Video Super Resolution で拡大するサンプルです。
 	- `Nvidia_RTX_Nodes_ComfyUI` を使用します。
-
-## All-in-One セットアップ
-
-`AllInOne.bat` は `Setup-AnimaBaseV10.bat` の内容に加えて、以下を追加します。
-
-- カスタムノード
-	- `hybskgks28275/ComfyUI-Anima-NAG`
-	- `AdamNizol/ComfyUI-Anima-Enhancer`
-	- `Comfy-Org/Nvidia_RTX_Nodes_ComfyUI`
-	- `ltdrdata/ComfyUI-Impact-Pack`
-	- `ltdrdata/was-node-suite-comfyui`
-	- `spacepxl/ComfyUI-Image-Filters`
-- LoRA
-	- `ComfyUI/models/loras/anima-turbo-lora-v0.1.safetensors`
-- checkpoint
-	- `ComfyUI/models/checkpoints/sam3.1_multiplex_fp16.safetensors`
-- workflow
-	- `Workflows/*.json` を `ComfyUI/user/default/workflows` にコピーします。
 
 ## 主な更新
 
