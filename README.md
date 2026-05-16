@@ -63,6 +63,18 @@ NVIDIA ビデオカードを搭載した Windows PC で [ComfyUI](https://github
 - 初期検証は `896x1152`, steps `30`, CFG `4` を想定しています。
 - 8GB VRAM で重い場合は、解像度や batch size を下げてください。
 
+## サンプル workflow
+
+- `AnimaBaseV10.json`
+	- Anima Base v1.0 の最小生成 workflow です。
+	- `896x1152`, steps `30`, CFG `4` の初期検証向けです。
+- `Detailer.json`
+	- 読み込んだ画像に対して、マスク作成、SEGS 変換、Detailer 処理を行うサンプルです。
+	- `ComfyUI-Impact-Pack`、`ComfyUI-Image-Filters`、SAM 3.1 checkpoint を使用します。
+- `Upscale.json`
+	- 読み込んだ画像を latent に戻して再生成し、RTX Video Super Resolution で拡大するサンプルです。
+	- `Nvidia_RTX_Nodes_ComfyUI` を使用します。
+
 ## All-in-One セットアップ
 
 `AllInOne.bat` は `Setup-AnimaBaseV10.bat` の内容に加えて、以下を追加します。

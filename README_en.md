@@ -63,6 +63,18 @@ This fork and the Anima Base v1.0 changes are developed and maintained by hybskg
 - The initial test target is `896x1152`, steps `30`, CFG `4`.
 - If 8GB VRAM is tight, lower the resolution or batch size.
 
+## Sample Workflows
+
+- `AnimaBaseV10.json`
+	- Minimum generation workflow for Anima Base v1.0.
+	- Intended for the initial `896x1152`, steps `30`, CFG `4` test.
+- `Detailer.json`
+	- Sample workflow for loading an image, creating masks, converting them to SEGS, and running Detailer processing.
+	- Uses `ComfyUI-Impact-Pack`, `ComfyUI-Image-Filters`, and the SAM 3.1 checkpoint.
+- `Upscale.json`
+	- Sample workflow for loading an image, encoding it back to latent, regenerating it, and upscaling with RTX Video Super Resolution.
+	- Uses `Nvidia_RTX_Nodes_ComfyUI`.
+
 ## All-in-One Setup
 
 `AllInOne.bat` adds the following files on top of `Setup-AnimaBaseV10.bat`.
