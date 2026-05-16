@@ -10,7 +10,7 @@ NVIDIA ビデオカードを搭載した Windows PC で [ComfyUI](https://github
 
 この fork は [Zuntan03/SimpleComfyUi](https://github.com/Zuntan03/SimpleComfyUi) と [Zuntan03/EasyTools](https://github.com/Zuntan03/EasyTools) を元にしています。元リポジトリを公開・保守されている zuntan 氏に感謝します。
 
-この `AnimaBase` ブランチおよび Anima Base v1.0 向けの変更は hybskgks28275 が開発・保守しています。この fork 版に関する質問、不具合報告、要望を zuntan 氏へ問い合わせないでください。
+この fork および Anima Base v1.0 向けの変更は hybskgks28275 が開発・保守しています。この fork 版に関する質問、不具合報告、要望を zuntan 氏へ問い合わせないでください。
 
 ## Portable Package との主な違い
 
@@ -33,7 +33,7 @@ NVIDIA ビデオカードを搭載した Windows PC で [ComfyUI](https://github
 	- 初回起動時にブラウザキャッシュにある過去のワークフローが開かれ、エラーになる場合があります。エラーを無視してワークフローを閉じてください。
 - `ComfyUi.bat` でも通常起動できます。
 - `Setup-AnimaBaseV10.bat` で ComfyUI の更新と Anima Base v1.0 のモデル配置を行います。
-- `Setup-AnimaTurboV01.bat` で高速生成用のカスタムノード、Turbo LoRA、Civitai workflow zip を追加します。
+- `AllInOne.bat` で追加カスタムノード、Turbo LoRA、SAM 3.1 checkpoint、追加 workflow を配置します。
 - `Update.bat` で更新します。
 	- `Update.bat` は `git pull --ff-only` で fast-forward 更新します。
 
@@ -63,26 +63,46 @@ NVIDIA ビデオカードを搭載した Windows PC で [ComfyUI](https://github
 - 初期検証は `896x1152`, steps `30`, CFG `4` を想定しています。
 - 8GB VRAM で重い場合は、解像度や batch size を下げてください。
 
-## 高速生成用セットアップ
+## サンプル workflow
 
-`Setup-AnimaTurboV01.bat` は以下を追加します。
+- `AnimaBaseV10.json`
+	- Anima Base v1.0 の最小生成 workflow です。
+	- `896x1152`, steps `30`, CFG `4` の初期検証向けです。
+- `AnimaTurboLoRAwithNAG.json`
+	- Anima Turbo LoRA と NAG を使った高速生成向け workflow です。
+	- `ComfyUI-Anima-NAG`、`ComfyUI-Anima-Enhancer`、`anima-turbo-lora-v0.1.safetensors` を使用します。
+- `Detailer.json`
+	- 読み込んだ画像に対して、マスク作成、SEGS 変換、Detailer 処理を行うサンプルです。
+	- `ComfyUI-Impact-Pack`、`ComfyUI-Image-Filters`、SAM 3.1 checkpoint を使用します。
+- `Upscale.json`
+	- 読み込んだ画像を latent に戻して再生成し、RTX Video Super Resolution で拡大するサンプルです。
+	- `Nvidia_RTX_Nodes_ComfyUI` を使用します。
+
+## All-in-One セットアップ
+
+`AllInOne.bat` は `Setup-AnimaBaseV10.bat` の内容に加えて、以下を追加します。
 
 - カスタムノード
 	- `hybskgks28275/ComfyUI-Anima-NAG`
 	- `AdamNizol/ComfyUI-Anima-Enhancer`
+	- `Comfy-Org/Nvidia_RTX_Nodes_ComfyUI`
+	- `ltdrdata/ComfyUI-Impact-Pack`
+	- `ltdrdata/was-node-suite-comfyui`
+	- `spacepxl/ComfyUI-Image-Filters`
 - LoRA
 	- `ComfyUI/models/loras/anima-turbo-lora-v0.1.safetensors`
+- checkpoint
+	- `ComfyUI/models/checkpoints/sam3.1_multiplex_fp16.safetensors`
 - workflow
-	- `ComfyUI/user/default/workflows/workflowForSDXLNoobaiXL_animaTurboLoraNAG.zip`
-	- zip は同じフォルダへ展開後に削除します。
+	- `Workflows/*.json` を `ComfyUI/user/default/workflows` にコピーします。
 
 ## 主な更新
 
-### 2026/05/15
+### 2026/05/16
 
-- `SimpleComfyUi` をフォークし、プロジェクト名を `EasyAnima` に変更して、Anima Base v1.0 の最低生成環境向けに `AnimaBase` ブランチを追加しました。
+- `SimpleComfyUi` をフォークし、プロジェクト名を `EasyAnima` に変更して、Anima Base v1.0 の最低生成環境向けに更新しました。
 	- Python 3.13 系、PyTorch 2.11.0+cu130、triton-windows 3.6 系を既定にしました。
-	- Anima Base v1.0 のモデル配置、最小 workflow、高速生成用セットアップを追加しました。
+	- Anima Base v1.0 のモデル配置、最小 workflow、All-in-One セットアップを追加しました。
 	- `Update.bat` を `git reset --hard` ではなく fast-forward 更新に変更しました。
 
 ## ライセンス

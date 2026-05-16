@@ -3,15 +3,14 @@ chcp 65001 > NUL
 set EASY_TOOLS=%~dp0EasyTools
 set GITHUB_CLONE_OR_PULL_HASH=%EASY_TOOLS%\Git\GitHub_CloneOrPull_Hash.bat
 set CIVITAI_MODEL_DOWNLOAD=%EASY_TOOLS%\Civitai\Civitai_ModelDownload.bat
-set CIVITAI_API_KEY_BAT=%EASY_TOOLS%\Civitai\Civitai_ApiKey.bat
-set ARIA=%EASY_TOOLS%\Download\Aria.bat
-set PS_CMD=PowerShell -Version 5.1 -NoProfile -ExecutionPolicy Bypass
+set HUGGING_FACE=%EASY_TOOLS%\Download\HuggingFace.bat
 
 call "%~dp0Setup-AnimaBaseV10.bat"
 if %ERRORLEVEL% neq 0 ( exit /b 1 )
 
 if not exist "%~dp0ComfyUI\custom_nodes\" ( mkdir "%~dp0ComfyUI\custom_nodes" )
 if not exist "%~dp0ComfyUI\models\loras\" ( mkdir "%~dp0ComfyUI\models\loras" )
+if not exist "%~dp0ComfyUI\models\checkpoints\" ( mkdir "%~dp0ComfyUI\models\checkpoints" )
 if not exist "%~dp0ComfyUI\user\default\workflows\" ( mkdir "%~dp0ComfyUI\user\default\workflows" )
 
 pushd "%~dp0ComfyUI"
@@ -29,7 +28,30 @@ if %ERRORLEVEL% neq 0 ( popd & exit /b 1 )
 call :GITHUB_HASH_REQUIREMENTS AdamNizol ComfyUI-Anima-Enhancer master
 if %ERRORLEVEL% neq 0 ( popd & exit /b 1 )
 
+@REM https://github.com/Comfy-Org/Nvidia_RTX_Nodes_ComfyUI
+call :GITHUB_HASH_REQUIREMENTS Comfy-Org Nvidia_RTX_Nodes_ComfyUI main
+if %ERRORLEVEL% neq 0 ( popd & exit /b 1 )
+
+@REM https://github.com/ltdrdata/ComfyUI-Impact-Pack
+call :GITHUB_HASH_REQUIREMENTS ltdrdata ComfyUI-Impact-Pack Main
+if %ERRORLEVEL% neq 0 ( popd & exit /b 1 )
+
+@REM https://github.com/ltdrdata/was-node-suite-comfyui
+call :GITHUB_HASH_REQUIREMENTS ltdrdata was-node-suite-comfyui main
+if %ERRORLEVEL% neq 0 ( popd & exit /b 1 )
+
+@REM https://github.com/spacepxl/ComfyUI-Image-Filters
+call :GITHUB_HASH_REQUIREMENTS spacepxl ComfyUI-Image-Filters main
+if %ERRORLEVEL% neq 0 ( popd & exit /b 1 )
+
 popd rem "%~dp0ComfyUI\custom_nodes"
+
+pushd "%~dp0ComfyUI\models\checkpoints"
+if exist sam3.1_multiplex_fp16.safetensors ( goto :EXIST_SAM31_MULTIPLEX )
+call "%HUGGING_FACE%" ".\" "sam3.1_multiplex_fp16.safetensors" "Comfy-Org/sam3.1" "checkpoints/"
+if %ERRORLEVEL% neq 0 ( popd & exit /b 1 )
+:EXIST_SAM31_MULTIPLEX
+popd rem "%~dp0ComfyUI\models\checkpoints"
 
 pushd "%~dp0ComfyUI\models\loras"
 if exist anima-turbo-lora-v0.1.safetensors ( goto :EXIST_ANIMA_TURBO_LORA )
@@ -39,24 +61,9 @@ if %ERRORLEVEL% neq 0 ( popd & exit /b 1 )
 popd rem "%~dp0ComfyUI\models\loras"
 
 pushd "%~dp0ComfyUI\user\default\workflows"
-if exist workflowForSDXLNoobaiXL_animaTurboLoraNAG.zip ( goto :EXIST_ANIMA_TURBO_WORKFLOW_ZIP )
-call "%CIVITAI_API_KEY_BAT%"
+echo copy /Y "%~dp0Workflows\*.json" ".\"
+copy /Y "%~dp0Workflows\*.json" ".\"
 if %ERRORLEVEL% neq 0 ( popd & exit /b 1 )
-set "CIVITAI_API_KEY_FILE=%EASY_TOOLS%\Civitai\CivitaiApiKey.txt"
-set /p CIVITAI_API_KEY=<"%CIVITAI_API_KEY_FILE%"
-set "ANIMA_TURBO_WORKFLOW_URL=https://civitai.red/api/download/models/2946113?token=%CIVITAI_API_KEY%"
-call "%ARIA%" ".\" "workflowForSDXLNoobaiXL_animaTurboLoraNAG.zip" "%ANIMA_TURBO_WORKFLOW_URL%"
-if %ERRORLEVEL% neq 0 ( popd & exit /b 1 )
-:EXIST_ANIMA_TURBO_WORKFLOW_ZIP
-
-echo %PS_CMD% "try { Expand-Archive -Path workflowForSDXLNoobaiXL_animaTurboLoraNAG.zip -DestinationPath . -Force } catch { exit 1 }"
-%PS_CMD% "try { Expand-Archive -Path workflowForSDXLNoobaiXL_animaTurboLoraNAG.zip -DestinationPath . -Force } catch { exit 1 }"
-if %ERRORLEVEL% neq 0 ( pause & popd & exit /b 1 )
-
-echo del /Q workflowForSDXLNoobaiXL_animaTurboLoraNAG.zip
-del /Q workflowForSDXLNoobaiXL_animaTurboLoraNAG.zip
-if %ERRORLEVEL% neq 0 ( pause & popd & exit /b 1 )
-
 popd rem "%~dp0ComfyUI\user\default\workflows"
 
 exit /b 0
@@ -67,13 +74,13 @@ set "GITHUB_REPO=%2"
 set "GITHUB_BRANCH=%3"
 set "GITHUB_HASH=%4"
 
-call %GITHUB_CLONE_OR_PULL_HASH% %GITHUB_AUTHOR% %GITHUB_REPO% %GITHUB_BRANCH% %GITHUB_HASH%
+call "%GITHUB_CLONE_OR_PULL_HASH%" "%GITHUB_AUTHOR%" "%GITHUB_REPO%" "%GITHUB_BRANCH%" "%GITHUB_HASH%"
 if %ERRORLEVEL% neq 0 ( exit /b 1 )
 
-if exist %GITHUB_REPO%\requirements.txt (
+if exist "%GITHUB_REPO%\requirements.txt" (
 	setlocal enabledelayedexpansion
-	echo pip install -qq -r %GITHUB_REPO%\requirements.txt
-	pip install -qq -r %GITHUB_REPO%\requirements.txt
+	echo pip install -qq -r "%GITHUB_REPO%\requirements.txt"
+	pip install -qq -r "%GITHUB_REPO%\requirements.txt"
 	if !ERRORLEVEL! neq 0 ( pause & endlocal & exit /b 1 )
 	endlocal
 )
