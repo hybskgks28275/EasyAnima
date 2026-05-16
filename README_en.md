@@ -29,9 +29,8 @@ This fork and the Anima Base v1.0 changes are developed and maintained by hybskg
 
 ## Usage
 
-- Launch Anima with `ComfyUi-Anima.bat`.
+- Launch with `ComfyUi.bat`.
 	- On first launch, past workflows in browser cache may open and cause errors. Please ignore the errors and close the workflow.
-- You can also use `ComfyUi.bat` for the normal launch path.
 - Run `Setup-AnimaBaseV10.bat` to update ComfyUI and place the Anima Base v1.0 files.
 - Run `AllInOne.bat` to add extra custom nodes, Turbo LoRA, the SAM 3.1 checkpoint, and extra workflows.
 - Update with `Update.bat`.
