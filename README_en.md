@@ -68,6 +68,9 @@ This fork and the Anima Base v1.0 changes are developed and maintained by hybskg
 - `AnimaBaseV10.json`
 	- Minimum generation workflow for Anima Base v1.0.
 	- Intended for the initial `896x1152`, steps `30`, CFG `4` test.
+- `AnimaTurboLoRAwithNAG.json`
+	- Fast generation workflow using Anima Turbo LoRA and NAG.
+	- Uses `ComfyUI-Anima-NAG`, `ComfyUI-Anima-Enhancer`, and `anima-turbo-lora-v0.1.safetensors`.
 - `Detailer.json`
 	- Sample workflow for loading an image, creating masks, converting them to SEGS, and running Detailer processing.
 	- Uses `ComfyUI-Impact-Pack`, `ComfyUI-Image-Filters`, and the SAM 3.1 checkpoint.
@@ -92,8 +95,6 @@ This fork and the Anima Base v1.0 changes are developed and maintained by hybskg
 	- `ComfyUI/models/checkpoints/sam3.1_multiplex_fp16.safetensors`
 - workflow
 	- Copies `Workflows/*.json` to `ComfyUI/user/default/workflows`.
-	- `ComfyUI/user/default/workflows/workflowForSDXLNoobaiXL_animaTurboLoraNAG.zip`
-	- The zip is deleted after extraction into the same folder.
 
 ## Major Updates
 

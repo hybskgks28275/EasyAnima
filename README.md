@@ -68,6 +68,9 @@ NVIDIA ビデオカードを搭載した Windows PC で [ComfyUI](https://github
 - `AnimaBaseV10.json`
 	- Anima Base v1.0 の最小生成 workflow です。
 	- `896x1152`, steps `30`, CFG `4` の初期検証向けです。
+- `AnimaTurboLoRAwithNAG.json`
+	- Anima Turbo LoRA と NAG を使った高速生成向け workflow です。
+	- `ComfyUI-Anima-NAG`、`ComfyUI-Anima-Enhancer`、`anima-turbo-lora-v0.1.safetensors` を使用します。
 - `Detailer.json`
 	- 読み込んだ画像に対して、マスク作成、SEGS 変換、Detailer 処理を行うサンプルです。
 	- `ComfyUI-Impact-Pack`、`ComfyUI-Image-Filters`、SAM 3.1 checkpoint を使用します。
@@ -92,8 +95,6 @@ NVIDIA ビデオカードを搭載した Windows PC で [ComfyUI](https://github
 	- `ComfyUI/models/checkpoints/sam3.1_multiplex_fp16.safetensors`
 - workflow
 	- `Workflows/*.json` を `ComfyUI/user/default/workflows` にコピーします。
-	- `ComfyUI/user/default/workflows/workflowForSDXLNoobaiXL_animaTurboLoraNAG.zip`
-	- zip は同じフォルダへ展開後に削除します。
 
 ## 主な更新
 

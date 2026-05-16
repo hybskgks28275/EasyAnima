@@ -3,10 +3,7 @@ chcp 65001 > NUL
 set EASY_TOOLS=%~dp0EasyTools
 set GITHUB_CLONE_OR_PULL_HASH=%EASY_TOOLS%\Git\GitHub_CloneOrPull_Hash.bat
 set CIVITAI_MODEL_DOWNLOAD=%EASY_TOOLS%\Civitai\Civitai_ModelDownload.bat
-set CIVITAI_API_KEY_BAT=%EASY_TOOLS%\Civitai\Civitai_ApiKey.bat
 set HUGGING_FACE=%EASY_TOOLS%\Download\HuggingFace.bat
-set ARIA=%EASY_TOOLS%\Download\Aria.bat
-set PS_CMD=PowerShell -Version 5.1 -NoProfile -ExecutionPolicy Bypass
 
 call "%~dp0Setup-AnimaBaseV10.bat"
 if %ERRORLEVEL% neq 0 ( exit /b 1 )
@@ -67,25 +64,6 @@ pushd "%~dp0ComfyUI\user\default\workflows"
 echo copy /Y "%~dp0Workflows\*.json" ".\"
 copy /Y "%~dp0Workflows\*.json" ".\"
 if %ERRORLEVEL% neq 0 ( popd & exit /b 1 )
-
-if exist workflowForSDXLNoobaiXL_animaTurboLoraNAG.zip ( goto :EXIST_ANIMA_TURBO_WORKFLOW_ZIP )
-call "%CIVITAI_API_KEY_BAT%"
-if %ERRORLEVEL% neq 0 ( popd & exit /b 1 )
-set "CIVITAI_API_KEY_FILE=%EASY_TOOLS%\Civitai\CivitaiApiKey.txt"
-set /p CIVITAI_API_KEY=<"%CIVITAI_API_KEY_FILE%"
-set "ANIMA_TURBO_WORKFLOW_URL=https://civitai.red/api/download/models/2946113?token=%CIVITAI_API_KEY%"
-call "%ARIA%" ".\" "workflowForSDXLNoobaiXL_animaTurboLoraNAG.zip" "%ANIMA_TURBO_WORKFLOW_URL%"
-if %ERRORLEVEL% neq 0 ( popd & exit /b 1 )
-:EXIST_ANIMA_TURBO_WORKFLOW_ZIP
-
-echo %PS_CMD% "try { Expand-Archive -Path workflowForSDXLNoobaiXL_animaTurboLoraNAG.zip -DestinationPath . -Force } catch { exit 1 }"
-%PS_CMD% "try { Expand-Archive -Path workflowForSDXLNoobaiXL_animaTurboLoraNAG.zip -DestinationPath . -Force } catch { exit 1 }"
-if %ERRORLEVEL% neq 0 ( pause & popd & exit /b 1 )
-
-echo del /Q workflowForSDXLNoobaiXL_animaTurboLoraNAG.zip
-del /Q workflowForSDXLNoobaiXL_animaTurboLoraNAG.zip
-if %ERRORLEVEL% neq 0 ( pause & popd & exit /b 1 )
-
 popd rem "%~dp0ComfyUI\user\default\workflows"
 
 exit /b 0
