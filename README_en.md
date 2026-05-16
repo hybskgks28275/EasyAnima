@@ -10,7 +10,7 @@
 
 This fork is based on [Zuntan03/SimpleComfyUi](https://github.com/Zuntan03/SimpleComfyUi) and [Zuntan03/EasyTools](https://github.com/Zuntan03/EasyTools). Thanks to zuntan for publishing and maintaining the original repositories.
 
-The `AnimaBase` branch and the Anima Base v1.0 changes in this fork are developed and maintained by hybskgks28275. Please do not contact zuntan for questions, bug reports, or requests related to this fork.
+This fork and the Anima Base v1.0 changes are developed and maintained by hybskgks28275. Please do not contact zuntan for questions, bug reports, or requests related to this fork.
 
 ## Main Differences From Portable Package
 
@@ -33,7 +33,7 @@ The `AnimaBase` branch and the Anima Base v1.0 changes in this fork are develope
 	- On first launch, past workflows in browser cache may open and cause errors. Please ignore the errors and close the workflow.
 - You can also use `ComfyUi.bat` for the normal launch path.
 - Run `Setup-AnimaBaseV10.bat` to update ComfyUI and place the Anima Base v1.0 files.
-- Run `Setup-AnimaTurboV01.bat` to add fast-generation custom nodes, Turbo LoRA, and the Civitai workflow zip.
+- Run `AllInOne.bat` to add extra custom nodes, Turbo LoRA, the SAM 3.1 checkpoint, and extra workflows.
 - Update with `Update.bat`.
 	- `Update.bat` uses `git pull --ff-only` for fast-forward updates.
 
@@ -63,16 +63,23 @@ The `AnimaBase` branch and the Anima Base v1.0 changes in this fork are develope
 - The initial test target is `896x1152`, steps `30`, CFG `4`.
 - If 8GB VRAM is tight, lower the resolution or batch size.
 
-## Fast Generation Setup
+## All-in-One Setup
 
-`Setup-AnimaTurboV01.bat` adds the following files.
+`AllInOne.bat` adds the following files on top of `Setup-AnimaBaseV10.bat`.
 
 - Custom nodes
 	- `hybskgks28275/ComfyUI-Anima-NAG`
 	- `AdamNizol/ComfyUI-Anima-Enhancer`
+	- `Comfy-Org/Nvidia_RTX_Nodes_ComfyUI`
+	- `ltdrdata/ComfyUI-Impact-Pack`
+	- `ltdrdata/was-node-suite-comfyui`
+	- `spacepxl/ComfyUI-Image-Filters`
 - LoRA
 	- `ComfyUI/models/loras/anima-turbo-lora-v0.1.safetensors`
+- checkpoint
+	- `ComfyUI/models/checkpoints/sam3.1_multiplex_fp16.safetensors`
 - workflow
+	- Copies `Workflows/*.json` to `ComfyUI/user/default/workflows`.
 	- `ComfyUI/user/default/workflows/workflowForSDXLNoobaiXL_animaTurboLoraNAG.zip`
 	- The zip is deleted after extraction into the same folder.
 
@@ -80,9 +87,9 @@ The `AnimaBase` branch and the Anima Base v1.0 changes in this fork are develope
 
 ### 2026/05/15
 
-- Forked `SimpleComfyUi`, renamed the project to `EasyAnima`, and added the `AnimaBase` branch for a minimal Anima Base v1.0 generation environment.
+- Forked `SimpleComfyUi`, renamed the project to `EasyAnima`, and updated it for a minimal Anima Base v1.0 generation environment.
 	- Changed defaults to Python 3.13 series, PyTorch 2.11.0+cu130, and triton-windows 3.6 series.
-	- Added Anima Base v1.0 model placement, the minimum workflow, and the fast generation setup.
+	- Added Anima Base v1.0 model placement, the minimum workflow, and the All-in-One setup.
 	- Changed `Update.bat` from `git reset --hard` to fast-forward updates.
 
 ## License
