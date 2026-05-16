@@ -85,7 +85,7 @@ NVIDIA ビデオカードを搭載した Windows PC で [ComfyUI](https://github
 
 ## 主な更新
 
-### 2026/05/15
+### 2026/05/16
 
 - `SimpleComfyUi` をフォークし、プロジェクト名を `EasyAnima` に変更して、Anima Base v1.0 の最低生成環境向けに更新しました。
 	- Python 3.13 系、PyTorch 2.11.0+cu130、triton-windows 3.6 系を既定にしました。

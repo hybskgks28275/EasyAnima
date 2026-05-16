@@ -85,7 +85,7 @@ This fork and the Anima Base v1.0 changes are developed and maintained by hybskg
 
 ## Major Updates
 
-### 2026/05/15
+### 2026/05/16
 
 - Forked `SimpleComfyUi`, renamed the project to `EasyAnima`, and updated it for a minimal Anima Base v1.0 generation environment.
 	- Changed defaults to Python 3.13 series, PyTorch 2.11.0+cu130, and triton-windows 3.6 series.
