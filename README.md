@@ -29,9 +29,8 @@ NVIDIA ビデオカードを搭載した Windows PC で [ComfyUI](https://github
 
 ## 使い方
 
-- `ComfyUi-Anima.bat` で Anima 向けに起動します。
+- `ComfyUi.bat` で起動します。
 	- 初回起動時にブラウザキャッシュにある過去のワークフローが開かれ、エラーになる場合があります。エラーを無視してワークフローを閉じてください。
-- `ComfyUi.bat` でも通常起動できます。
 - `Setup-AnimaBaseV10.bat` で ComfyUI の更新と Anima Base v1.0 のモデル配置を行います。
 - `AllInOne.bat` で追加カスタムノード、Turbo LoRA、SAM 3.1 checkpoint、追加 workflow を配置します。
 - `Update.bat` で更新します。
