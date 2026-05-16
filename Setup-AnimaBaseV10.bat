@@ -2,6 +2,7 @@
 chcp 65001 > NUL
 set EASY_TOOLS=%~dp0EasyTools
 set HUGGING_FACE=%EASY_TOOLS%\Download\HuggingFace.bat
+set ARIA=%EASY_TOOLS%\Download\Aria.bat
 
 call "%~dp0EasyAnima\Setup.bat"
 if %ERRORLEVEL% neq 0 ( exit /b 1 )
@@ -25,7 +26,7 @@ if exist anima-preview.safetensors (
 	ren anima-preview.safetensors anima_baseV10.safetensors
 	goto :EXIST_ANIMA_BASE
 )
-call "%HUGGING_FACE%" .\ anima_baseV10.safetensors circlestone-labs/Anima split_files/diffusion_models/
+call "%ARIA%" ".\" "anima_baseV10.safetensors" "https://huggingface.co/circlestone-labs/Anima/resolve/main/split_files/diffusion_models/anima-base-v1.0.safetensors"
 if %ERRORLEVEL% neq 0 ( popd & exit /b 1 )
 :EXIST_ANIMA_BASE
 popd rem "%~dp0ComfyUI\models\diffusion_models"
