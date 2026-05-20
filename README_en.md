@@ -44,12 +44,18 @@ If you want to use all sample workflows, run `EasyAnima/AllInOne.bat` after `Eas
 	- `ltdrdata/ComfyUI-Impact-Pack`
 	- `ltdrdata/was-node-suite-comfyui`
 	- `spacepxl/ComfyUI-Image-Filters`
+	- `kohya-ss/ComfyUI-Anima-LLLite`
 - LoRA
 	- `ComfyUI/models/loras/anima-turbo-lora-v0.1.safetensors`
 - checkpoint
 	- `ComfyUI/models/checkpoints/sam3.1_multiplex_fp16.safetensors`
+- ControlNet
+	- `ComfyUI/models/controlnet/anima-lllite-any-test-like-v2.safetensors`
+	- `ComfyUI/models/controlnet/anima-lllite-inpainting-v2.safetensors`
 - workflow
 	- Copies `Workflows/*.json` to `ComfyUI/user/default/workflows`.
+- input
+	- Copies `Image/*.png` to `ComfyUI/input`.
 
 ## Usage
 
@@ -93,6 +99,9 @@ If you want to use all sample workflows, run `EasyAnima/AllInOne.bat` after `Eas
 - `AnimaTurboLoRAwithNAG.json`
 	- Fast generation workflow using Anima Turbo LoRA and NAG.
 	- Uses `ComfyUI-Anima-NAG`, `ComfyUI-Anima-Enhancer`, and `anima-turbo-lora-v0.1.safetensors`.
+- `CN-anytest-like.json`
+	- ControlNet sample using the Anima-LLLite any-test-like model.
+	- Uses `ComfyUI-Anima-LLLite`, `anima-lllite-any-test-like-v2.safetensors`, and `anytest.png`.
 - `Detailer.json`
 	- Sample workflow for loading an image, creating masks, converting them to SEGS, and running Detailer processing.
 	- Uses `ComfyUI-Impact-Pack`, `ComfyUI-Image-Filters`, and the SAM 3.1 checkpoint.

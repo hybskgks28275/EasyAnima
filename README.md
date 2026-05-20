@@ -44,12 +44,18 @@ Anima Base v1.0 だけを使う場合は、`EasyAnimaInstaller.bat` の実行だ
 	- `ltdrdata/ComfyUI-Impact-Pack`
 	- `ltdrdata/was-node-suite-comfyui`
 	- `spacepxl/ComfyUI-Image-Filters`
+	- `kohya-ss/ComfyUI-Anima-LLLite`
 - LoRA
 	- `ComfyUI/models/loras/anima-turbo-lora-v0.1.safetensors`
 - checkpoint
 	- `ComfyUI/models/checkpoints/sam3.1_multiplex_fp16.safetensors`
+- ControlNet
+	- `ComfyUI/models/controlnet/anima-lllite-any-test-like-v2.safetensors`
+	- `ComfyUI/models/controlnet/anima-lllite-inpainting-v2.safetensors`
 - workflow
 	- `Workflows/*.json` を `ComfyUI/user/default/workflows` にコピーします。
+- input
+	- `Image/*.png` を `ComfyUI/input` にコピーします。
 
 ## 使い方
 
@@ -93,6 +99,9 @@ Anima Base v1.0 だけを使う場合は、`EasyAnimaInstaller.bat` の実行だ
 - `AnimaTurboLoRAwithNAG.json`
 	- Anima Turbo LoRA と NAG を使った高速生成向け workflow です。
 	- `ComfyUI-Anima-NAG`、`ComfyUI-Anima-Enhancer`、`anima-turbo-lora-v0.1.safetensors` を使用します。
+- `CN-anytest-like.json`
+	- Anima-LLLite の any-test-like モデルを使う ControlNet サンプルです。
+	- `ComfyUI-Anima-LLLite`、`anima-lllite-any-test-like-v2.safetensors`、`anytest.png` を使用します。
 - `Detailer.json`
 	- 読み込んだ画像に対して、マスク作成、SEGS 変換、Detailer 処理を行うサンプルです。
 	- `ComfyUI-Impact-Pack`、`ComfyUI-Image-Filters`、SAM 3.1 checkpoint を使用します。
