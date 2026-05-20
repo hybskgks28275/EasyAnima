@@ -11,6 +11,8 @@ if %ERRORLEVEL% neq 0 ( exit /b 1 )
 if not exist "%~dp0ComfyUI\custom_nodes\" ( mkdir "%~dp0ComfyUI\custom_nodes" )
 if not exist "%~dp0ComfyUI\models\loras\" ( mkdir "%~dp0ComfyUI\models\loras" )
 if not exist "%~dp0ComfyUI\models\checkpoints\" ( mkdir "%~dp0ComfyUI\models\checkpoints" )
+if not exist "%~dp0ComfyUI\models\controlnet\" ( mkdir "%~dp0ComfyUI\models\controlnet" )
+if not exist "%~dp0ComfyUI\input\" ( mkdir "%~dp0ComfyUI\input" )
 if not exist "%~dp0ComfyUI\user\default\workflows\" ( mkdir "%~dp0ComfyUI\user\default\workflows" )
 
 pushd "%~dp0ComfyUI"
@@ -44,6 +46,10 @@ if %ERRORLEVEL% neq 0 ( popd & exit /b 1 )
 call :GITHUB_HASH_REQUIREMENTS spacepxl ComfyUI-Image-Filters main
 if %ERRORLEVEL% neq 0 ( popd & exit /b 1 )
 
+@REM https://github.com/kohya-ss/ComfyUI-Anima-LLLite
+call :GITHUB_HASH_REQUIREMENTS kohya-ss ComfyUI-Anima-LLLite main
+if %ERRORLEVEL% neq 0 ( popd & exit /b 1 )
+
 popd rem "%~dp0ComfyUI\custom_nodes"
 
 pushd "%~dp0ComfyUI\models\checkpoints"
@@ -59,6 +65,24 @@ call "%CIVITAI_MODEL_DOWNLOAD%" ".\" "anima-turbo-lora-v0.1.safetensors" "256084
 if %ERRORLEVEL% neq 0 ( popd & exit /b 1 )
 :EXIST_ANIMA_TURBO_LORA
 popd rem "%~dp0ComfyUI\models\loras"
+
+pushd "%~dp0ComfyUI\models\controlnet"
+if exist anima-lllite-any-test-like-v2.safetensors ( goto :EXIST_ANIMA_LLLITE_ANY_TEST_LIKE )
+call "%HUGGING_FACE%" ".\" "anima-lllite-any-test-like-v2.safetensors" "kohya-ss/Anima-LLLite" ""
+if %ERRORLEVEL% neq 0 ( popd & exit /b 1 )
+:EXIST_ANIMA_LLLITE_ANY_TEST_LIKE
+
+if exist anima-lllite-inpainting-v2.safetensors ( goto :EXIST_ANIMA_LLLITE_INPAINTING )
+call "%HUGGING_FACE%" ".\" "anima-lllite-inpainting-v2.safetensors" "kohya-ss/Anima-LLLite" ""
+if %ERRORLEVEL% neq 0 ( popd & exit /b 1 )
+:EXIST_ANIMA_LLLITE_INPAINTING
+popd rem "%~dp0ComfyUI\models\controlnet"
+
+pushd "%~dp0ComfyUI\input"
+echo copy /Y "%~dp0Image\*.png" ".\"
+copy /Y "%~dp0Image\*.png" ".\"
+if %ERRORLEVEL% neq 0 ( popd & exit /b 1 )
+popd rem "%~dp0ComfyUI\input"
 
 pushd "%~dp0ComfyUI\user\default\workflows"
 echo copy /Y "%~dp0Workflows\*.json" ".\"
