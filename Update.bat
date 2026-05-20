@@ -30,6 +30,8 @@ if %ERRORLEVEL% neq 0 goto :UPDATE_REPO_FAILED_POPD
 
 for /f "usebackq delims=" %%B in (`git branch --show-current`) do set "UPDATE_REPO_BRANCH=%%B"
 if "%UPDATE_REPO_BRANCH%"=="" set "UPDATE_REPO_BRANCH=main"
+git show-ref --verify --quiet "refs/remotes/origin/%UPDATE_REPO_BRANCH%"
+if %ERRORLEVEL% neq 0 set "UPDATE_REPO_BRANCH=main"
 
 echo git pull --ff-only origin %UPDATE_REPO_BRANCH%
 git pull --ff-only origin %UPDATE_REPO_BRANCH%
