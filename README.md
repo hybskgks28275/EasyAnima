@@ -112,6 +112,20 @@ Anima Base v1.0 だけを使う場合は、`EasyAnimaInstaller.bat` の実行だ
 
 ## 主な更新
 
+### 2026/05/21
+
+- `Update.bat` の不具合を修正しました。
+	- 日本語メッセージや括弧ブロックで cmd の解釈が崩れる問題を避けるため、更新処理を整理しました。
+	- リモートに存在しないローカルブランチ名を掴んだ場合は `main` にフォールバックするようにしました。
+- `Update.bat` を All-in-One インストール済み環境に対応しました。
+	- `AllInOne.bat` 正常完了時に `AllInOneInstalled.txt` を作成します。
+	- `AllInOneInstalled.txt` がある場合、`Update.bat` 実行時に `AllInOne.bat` も実行します。
+- サンプル workflow を追加しました。
+	- `AnimaTurboLoRAwithNAG.json`
+	- `CN-anytest-like.json`
+	- `Detailer.json`
+	- `Upscale.json`
+
 ### 2026/05/16
 
 - `SimpleComfyUi` をフォークし、プロジェクト名を `EasyAnima` に変更して、Anima Base v1.0 の最低生成環境向けに更新しました。

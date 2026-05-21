@@ -112,6 +112,20 @@ After `AllInOne.bat` completes, it creates `AllInOneInstalled.txt`, and later `U
 
 ## Major Updates
 
+### 2026/05/21
+
+- Fixed `Update.bat` issues.
+	- Reworked the update flow to avoid cmd parsing problems around Japanese messages and parenthesized blocks.
+	- Added fallback to `main` when the current local branch does not exist on the remote.
+- Added All-in-One support to `Update.bat`.
+	- `AllInOne.bat` creates `AllInOneInstalled.txt` after successful completion.
+	- When `AllInOneInstalled.txt` exists, `Update.bat` also runs `AllInOne.bat`.
+- Added sample workflows.
+	- `AnimaTurboLoRAwithNAG.json`
+	- `CN-anytest-like.json`
+	- `Detailer.json`
+	- `Upscale.json`
+
 ### 2026/05/16
 
 - Forked `SimpleComfyUi`, renamed the project to `EasyAnima`, and updated it for a minimal Anima Base v1.0 generation environment.
