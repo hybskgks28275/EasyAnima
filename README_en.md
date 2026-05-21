@@ -33,7 +33,8 @@ If you only want to use Anima Base v1.0, running `EasyAnimaInstaller.bat` is eno
 
 ### All-in-One Installation
 
-If you want to use all sample workflows, run `EasyAnima/AllInOne.bat` after `EasyAnimaInstaller.bat` finishes.
+If you want to use all sample workflows, enter `y` or `yes` at the `EasyAnimaInstaller.bat` prompt to run `AllInOne.bat`.
+All-in-One installation requires a Civitai API Key because it downloads the Turbo LoRA from Civitai.
 After `AllInOne.bat` completes, it creates `AllInOneInstalled.txt`, and later `Update.bat` runs the All-in-One update path as well.
 
 `AllInOne.bat` adds the following files on top of `Setup-AnimaBaseV10.bat`.
@@ -48,6 +49,7 @@ After `AllInOne.bat` completes, it creates `AllInOneInstalled.txt`, and later `U
 	- `kohya-ss/ComfyUI-Anima-LLLite`
 - LoRA
 	- `ComfyUI/models/loras/anima-turbo-lora-v0.1.safetensors`
+	- Requires a Civitai API Key.
 - checkpoint
 	- `ComfyUI/models/checkpoints/sam3.1_multiplex_fp16.safetensors`
 - ControlNet

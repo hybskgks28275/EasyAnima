@@ -3,6 +3,7 @@ chcp 65001 > NUL
 
 set "PROJECT_NAME=EasyAnima"
 set "PROJECT_SETUP_BAT=%~dp0Setup-AnimaBaseV10.bat"
+set "PROJECT_ALL_IN_ONE_BAT=%~dp0AllInOne.bat"
 @REM set "PROJECT_MODEL_DOWNLOAD_BAT=%~dp0Download.bat"
 
 set PROJECT_URL=https://github.com/hybskgks28275/%PROJECT_NAME%
@@ -136,6 +137,9 @@ if not exist "%PROJECT_SETUP_BAT%" (
 call "%PROJECT_SETUP_BAT%"
 if %ERRORLEVEL% neq 0 ( exit /b 1 )
 
+call :ASK_ALL_IN_ONE
+if %ERRORLEVEL% neq 0 ( exit /b 1 )
+
 @REM if /i "%DOWNLOAD_MODEL_YES_OR_NO%" == "n" ( goto :FINALIZE )
 @REM call %PROJECT_MODEL_DOWNLOAD_BAT%
 
@@ -171,6 +175,35 @@ echo git pull --ff-only origin %INIT_REPO_BRANCH%
 git pull --ff-only origin %INIT_REPO_BRANCH%
 if %ERRORLEVEL% neq 0 ( pause & popd & exit /b 1 )
 
+exit /b 0
+
+:ASK_ALL_IN_ONE
+echo.
+echo "全てのサンプル workflow を使う場合は AllInOne.bat を実行します。"
+echo "All-in-One インストールには Civitai API Key が必要です。"
+echo "AllInOne.bat を実行しますか？ [y/N]"
+echo.
+echo "Run AllInOne.bat if you want to use all sample workflows."
+echo "All-in-One installation requires a Civitai API Key."
+echo "Run AllInOne.bat? [y/N]"
+set "ALL_IN_ONE_YES_OR_NO="
+set /p ALL_IN_ONE_YES_OR_NO=
+
+if /i "%ALL_IN_ONE_YES_OR_NO%"=="y" goto :RUN_ALL_IN_ONE
+if /i "%ALL_IN_ONE_YES_OR_NO%"=="yes" goto :RUN_ALL_IN_ONE
+
+exit /b 0
+
+:RUN_ALL_IN_ONE
+if exist "%PROJECT_ALL_IN_ONE_BAT%" goto :CALL_ALL_IN_ONE
+echo "[ERROR] AllInOne.bat が見つかりません。"
+echo "[ERROR] AllInOne.bat was not found."
+pause
+exit /b 1
+
+:CALL_ALL_IN_ONE
+call "%PROJECT_ALL_IN_ONE_BAT%"
+if %ERRORLEVEL% neq 0 exit /b 1
 exit /b 0
 
 :FINALIZE
