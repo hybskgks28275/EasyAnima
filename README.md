@@ -121,10 +121,7 @@ Anima Base v1.0 だけを使う場合は、`EasyAnimaInstaller.bat` の実行だ
 	- `AllInOne.bat` 正常完了時に `AllInOneInstalled.txt` を作成します。
 	- `AllInOneInstalled.txt` がある場合、`Update.bat` 実行時に `AllInOne.bat` も実行します。
 - サンプル workflow を追加しました。
-	- `AnimaTurboLoRAwithNAG.json`
 	- `CN-anytest-like.json`
-	- `Detailer.json`
-	- `Upscale.json`
 
 ### 2026/05/16
 

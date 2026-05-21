@@ -120,11 +120,8 @@ After `AllInOne.bat` completes, it creates `AllInOneInstalled.txt`, and later `U
 - Added All-in-One support to `Update.bat`.
 	- `AllInOne.bat` creates `AllInOneInstalled.txt` after successful completion.
 	- When `AllInOneInstalled.txt` exists, `Update.bat` also runs `AllInOne.bat`.
-- Added sample workflows.
-	- `AnimaTurboLoRAwithNAG.json`
+- Added a sample workflow.
 	- `CN-anytest-like.json`
-	- `Detailer.json`
-	- `Upscale.json`
 
 ### 2026/05/16
 
