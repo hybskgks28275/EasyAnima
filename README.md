@@ -33,8 +33,12 @@ Anima Base v1.0 だけを使う場合は、`EasyAnimaInstaller.bat` の実行だ
 
 ### All-in-One インストール
 
-全てのサンプル workflow を使いたい場合は、`EasyAnimaInstaller.bat` の確認メッセージで `y` または `yes` を入力して `AllInOne.bat` を実行します。
-All-in-One インストールでは Civitai から Turbo LoRA を取得するため、Civitai API Key が必要です。
+全てのサンプル workflow を使いたい場合は、All-in-One インストールを行います。
+
+- 初回インストール時に行う場合は、`EasyAnimaInstaller.bat` の確認メッセージで `y` または `yes` を入力します。
+- 後から追加する場合は、インストール済みフォルダの `EasyAnima/AllInOne.bat` を実行します。
+
+All-in-One インストールでは Civitai から Turbo LoRA を取得するため、どちらの方法でも Civitai API Key が必要です。
 `AllInOne.bat` の完了後は `AllInOneInstalled.txt` が作成され、以後 `Update.bat` 実行時にも All-in-One の内容を更新します。
 
 `AllInOne.bat` は `Setup-AnimaBaseV10.bat` の内容に加えて、以下を追加します。
