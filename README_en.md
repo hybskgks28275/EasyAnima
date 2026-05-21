@@ -34,6 +34,7 @@ If you only want to use Anima Base v1.0, running `EasyAnimaInstaller.bat` is eno
 ### All-in-One Installation
 
 If you want to use all sample workflows, run `EasyAnima/AllInOne.bat` after `EasyAnimaInstaller.bat` finishes.
+After `AllInOne.bat` completes, it creates `AllInOneInstalled.txt`, and later `Update.bat` runs the All-in-One update path as well.
 
 `AllInOne.bat` adds the following files on top of `Setup-AnimaBaseV10.bat`.
 
