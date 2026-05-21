@@ -10,7 +10,15 @@ if %ERRORLEVEL% neq 0 exit /b 1
 call :UPDATE_REPO "%~dp0" "EasyAnima"
 if %ERRORLEVEL% neq 0 exit /b 1
 
+if exist "%~dp0AllInOneInstalled.txt" goto :RUN_ALL_IN_ONE
+
 call "%~dp0Setup-AnimaBaseV10.bat"
+if %ERRORLEVEL% neq 0 exit /b 1
+
+exit /b 0
+
+:RUN_ALL_IN_ONE
+call "%~dp0AllInOne.bat"
 if %ERRORLEVEL% neq 0 exit /b 1
 
 exit /b 0

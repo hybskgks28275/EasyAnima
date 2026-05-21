@@ -4,6 +4,7 @@ set EASY_TOOLS=%~dp0EasyTools
 set GITHUB_CLONE_OR_PULL_HASH=%EASY_TOOLS%\Git\GitHub_CloneOrPull_Hash.bat
 set CIVITAI_MODEL_DOWNLOAD=%EASY_TOOLS%\Civitai\Civitai_ModelDownload.bat
 set HUGGING_FACE=%EASY_TOOLS%\Download\HuggingFace.bat
+set "ALL_IN_ONE_MARKER=%~dp0AllInOneInstalled.txt"
 
 call "%~dp0Setup-AnimaBaseV10.bat"
 if %ERRORLEVEL% neq 0 ( exit /b 1 )
@@ -89,6 +90,9 @@ echo copy /Y "%~dp0Workflows\*.json" ".\"
 copy /Y "%~dp0Workflows\*.json" ".\"
 if %ERRORLEVEL% neq 0 ( popd & exit /b 1 )
 popd rem "%~dp0ComfyUI\user\default\workflows"
+
+echo EasyAnima AllInOne setup completed.>"%ALL_IN_ONE_MARKER%"
+echo Run Update.bat to refresh AllInOne components.>>"%ALL_IN_ONE_MARKER%"
 
 exit /b 0
 

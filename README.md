@@ -34,6 +34,7 @@ Anima Base v1.0 だけを使う場合は、`EasyAnimaInstaller.bat` の実行だ
 ### All-in-One インストール
 
 全てのサンプル workflow を使いたい場合は、`EasyAnimaInstaller.bat` の完了後に `EasyAnima/AllInOne.bat` を実行します。
+`AllInOne.bat` の完了後は `AllInOneInstalled.txt` が作成され、以後 `Update.bat` 実行時にも All-in-One の内容を更新します。
 
 `AllInOne.bat` は `Setup-AnimaBaseV10.bat` の内容に加えて、以下を追加します。
 
@@ -110,6 +111,17 @@ Anima Base v1.0 だけを使う場合は、`EasyAnimaInstaller.bat` の実行だ
 	- `Nvidia_RTX_Nodes_ComfyUI` を使用します。
 
 ## 主な更新
+
+### 2026/05/21
+
+- `Update.bat` の不具合を修正しました。
+	- 日本語メッセージや括弧ブロックで cmd の解釈が崩れる問題を避けるため、更新処理を整理しました。
+	- リモートに存在しないローカルブランチ名を掴んだ場合は `main` にフォールバックするようにしました。
+- `Update.bat` を All-in-One インストール済み環境に対応しました。
+	- `AllInOne.bat` 正常完了時に `AllInOneInstalled.txt` を作成します。
+	- `AllInOneInstalled.txt` がある場合、`Update.bat` 実行時に `AllInOne.bat` も実行します。
+- サンプル workflow を追加しました。
+	- `CN-anytest-like.json`
 
 ### 2026/05/16
 

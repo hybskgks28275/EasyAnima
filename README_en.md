@@ -34,6 +34,7 @@ If you only want to use Anima Base v1.0, running `EasyAnimaInstaller.bat` is eno
 ### All-in-One Installation
 
 If you want to use all sample workflows, run `EasyAnima/AllInOne.bat` after `EasyAnimaInstaller.bat` finishes.
+After `AllInOne.bat` completes, it creates `AllInOneInstalled.txt`, and later `Update.bat` runs the All-in-One update path as well.
 
 `AllInOne.bat` adds the following files on top of `Setup-AnimaBaseV10.bat`.
 
@@ -110,6 +111,17 @@ If you want to use all sample workflows, run `EasyAnima/AllInOne.bat` after `Eas
 	- Uses `Nvidia_RTX_Nodes_ComfyUI`.
 
 ## Major Updates
+
+### 2026/05/21
+
+- Fixed `Update.bat` issues.
+	- Reworked the update flow to avoid cmd parsing problems around Japanese messages and parenthesized blocks.
+	- Added fallback to `main` when the current local branch does not exist on the remote.
+- Added All-in-One support to `Update.bat`.
+	- `AllInOne.bat` creates `AllInOneInstalled.txt` after successful completion.
+	- When `AllInOneInstalled.txt` exists, `Update.bat` also runs `AllInOne.bat`.
+- Added a sample workflow.
+	- `CN-anytest-like.json`
 
 ### 2026/05/16
 
