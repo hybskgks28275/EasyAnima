@@ -118,10 +118,10 @@ pause & exit /b 1
 :EASY_GIT_FOUND
 @REM ---- ここまで Git/Get_SetPath.bat と同期 --------
 
-call :INIT_REPO %EASY_TOOLS_DIR% %EASY_TOOLS_URL% %EASY_TOOLS_BRANCH%
+call :INIT_REPO "%EASY_TOOLS_DIR%" "%EASY_TOOLS_URL%" "%EASY_TOOLS_BRANCH%"
 if %ERRORLEVEL% neq 0 ( exit /b 1 )
 
-call :INIT_REPO %PROJECT_DIR% %PROJECT_URL% %PROJECT_BRANCH%
+call :INIT_REPO "%PROJECT_DIR%" "%PROJECT_URL%" "%PROJECT_BRANCH%"
 if %ERRORLEVEL% neq 0 ( exit /b 1 )
 
 @REM Python 3.13系を利用します。
@@ -146,46 +146,52 @@ if %ERRORLEVEL% neq 0 ( exit /b 1 )
 goto :FINALIZE
 
 :INIT_REPO
-set INIT_REPO_DIR=%~1
-set INIT_REPO_URL=%~2
-set INIT_REPO_BRANCH=%~3
+set "INIT_REPO_DIR=%~1"
+set "INIT_REPO_URL=%~2"
+set "INIT_REPO_BRANCH=%~3"
 
-if not exist %INIT_REPO_DIR%\ ( mkdir %INIT_REPO_DIR% )
-pushd %INIT_REPO_DIR%
+if not exist "%INIT_REPO_DIR%\" ( mkdir "%INIT_REPO_DIR%" )
+pushd "%INIT_REPO_DIR%"
+if %ERRORLEVEL% neq 0 goto :INIT_REPO_FAILED
 
 echo git init -q
 git init -q
-if %ERRORLEVEL% neq 0 ( pause & popd & exit /b 1 )
+if %ERRORLEVEL% neq 0 goto :INIT_REPO_FAILED_POPD
 
 git remote get-url origin > NUL 2>&1
-if %ERRORLEVEL% neq 0 (
-	cd > NUL
-	setlocal enabledelayedexpansion
-	echo git remote add origin %INIT_REPO_URL%
-	git remote add origin %INIT_REPO_URL%
-	if !ERRORLEVEL! neq 0 ( pause & endlocal % popd & exit /b 1 )
-	endlocal
-)
+if %ERRORLEVEL% neq 0 goto :INIT_REPO_ADD_ORIGIN
+goto :INIT_REPO_FETCH
 
+:INIT_REPO_ADD_ORIGIN
+echo git remote add origin %INIT_REPO_URL%
+git remote add origin %INIT_REPO_URL%
+if %ERRORLEVEL% neq 0 goto :INIT_REPO_FAILED_POPD
+
+:INIT_REPO_FETCH
 echo git fetch
 git fetch
-if %ERRORLEVEL% neq 0 ( pause & popd & exit /b 1 )
+if %ERRORLEVEL% neq 0 goto :INIT_REPO_FAILED_POPD
 
 echo git pull --ff-only origin %INIT_REPO_BRANCH%
 git pull --ff-only origin %INIT_REPO_BRANCH%
-if %ERRORLEVEL% neq 0 ( pause & popd & exit /b 1 )
+if %ERRORLEVEL% neq 0 goto :INIT_REPO_FAILED_POPD
 
+popd
 exit /b 0
+
+:INIT_REPO_FAILED_POPD
+popd
+
+:INIT_REPO_FAILED
+pause
+exit /b 1
 
 :ASK_ALL_IN_ONE
 echo.
-echo "全てのサンプル workflow を使う場合は AllInOne.bat を実行します。"
-echo "All-in-One インストールには Civitai API Key が必要です。"
-echo "AllInOne.bat を実行しますか？ [y/N]"
+echo Run AllInOne.bat if you want to use all sample workflows.
+echo All-in-One installation requires a Civitai API Key.
+echo Run AllInOne.bat? [y/N]
 echo.
-echo "Run AllInOne.bat if you want to use all sample workflows."
-echo "All-in-One installation requires a Civitai API Key."
-echo "Run AllInOne.bat? [y/N]"
 set "ALL_IN_ONE_YES_OR_NO="
 set /p ALL_IN_ONE_YES_OR_NO=
 
@@ -196,8 +202,7 @@ exit /b 0
 
 :RUN_ALL_IN_ONE
 if exist "%PROJECT_ALL_IN_ONE_BAT%" goto :CALL_ALL_IN_ONE
-echo "[ERROR] AllInOne.bat が見つかりません。"
-echo "[ERROR] AllInOne.bat was not found."
+echo [ERROR] AllInOne.bat was not found.
 pause
 exit /b 1
 
