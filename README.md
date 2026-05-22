@@ -31,6 +31,11 @@ NVIDIA ビデオカードを搭載した Windows PC で [ComfyUI](https://github
 
 Anima Base v1.0 だけを使う場合は、`EasyAnimaInstaller.bat` の実行だけで完了です。
 
+### インストール中の pip エラー表示について
+
+インストール中に赤文字で pip の `ERROR` が出力されることがあります。
+セットアップが停止せず最後まで進んだ場合は、依存関係の確認や再試行中に表示されたものなので無視して問題ありません。
+
 ### All-in-One インストール
 
 全てのサンプル workflow を使いたい場合は、All-in-One インストールを行います。

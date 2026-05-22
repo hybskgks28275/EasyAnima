@@ -31,6 +31,11 @@ This fork and the Anima Base v1.0 changes are developed and maintained by hybskg
 
 If you only want to use Anima Base v1.0, running `EasyAnimaInstaller.bat` is enough.
 
+### pip Error Output During Installation
+
+During installation, pip may print red `ERROR` messages.
+If the setup does not stop and completes normally, these messages are from dependency checks or retry paths and can be ignored.
+
 ### All-in-One Installation
 
 If you want to use all sample workflows, run the All-in-One installation.
