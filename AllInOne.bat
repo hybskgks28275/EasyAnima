@@ -7,11 +7,6 @@ set HUGGING_FACE=%EASY_TOOLS%\Download\HuggingFace.bat
 set "ALL_IN_ONE_MARKER=%~dp0AllInOneInstalled.txt"
 set "EXTRA_CHECKPOINTS_ENABLED=0"
 
-if exist "%~dp0AllInOneExtraCheckpoints.txt" (
-	set "EXTRA_CHECKPOINTS_ENABLED=1"
-	del /Q "%~dp0AllInOneExtraCheckpoints.txt"
-)
-
 call "%~dp0Setup-AnimaBaseV10.bat"
 if %ERRORLEVEL% neq 0 ( exit /b 1 )
 
