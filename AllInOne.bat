@@ -5,6 +5,7 @@ set GITHUB_CLONE_OR_PULL_HASH=%EASY_TOOLS%\Git\GitHub_CloneOrPull_Hash.bat
 set CIVITAI_MODEL_DOWNLOAD=%EASY_TOOLS%\Civitai\Civitai_ModelDownload.bat
 set HUGGING_FACE=%EASY_TOOLS%\Download\HuggingFace.bat
 set "ALL_IN_ONE_MARKER=%~dp0AllInOneInstalled.txt"
+set "EXTRA_CHECKPOINTS_ENABLED=0"
 
 call "%~dp0Setup-AnimaBaseV10.bat"
 if %ERRORLEVEL% neq 0 ( exit /b 1 )
@@ -51,6 +52,14 @@ if %ERRORLEVEL% neq 0 ( popd & exit /b 1 )
 call :GITHUB_HASH_REQUIREMENTS kohya-ss ComfyUI-Anima-LLLite main
 if %ERRORLEVEL% neq 0 ( popd & exit /b 1 )
 
+@REM https://github.com/bugltd/ComfyLab-Pack
+call :GITHUB_HASH_REQUIREMENTS bugltd ComfyLab-Pack main
+if %ERRORLEVEL% neq 0 ( popd & exit /b 1 )
+
+@REM https://github.com/hybskgks28275/ComfyUI-hybs-nodes
+call :GITHUB_HASH_REQUIREMENTS hybskgks28275 ComfyUI-hybs-nodes main
+if %ERRORLEVEL% neq 0 ( popd & exit /b 1 )
+
 popd rem "%~dp0ComfyUI\custom_nodes"
 
 pushd "%~dp0ComfyUI\models\checkpoints"
@@ -59,6 +68,9 @@ call "%HUGGING_FACE%" ".\" "sam3.1_multiplex_fp16.safetensors" "Comfy-Org/sam3.1
 if %ERRORLEVEL% neq 0 ( popd & exit /b 1 )
 :EXIST_SAM31_MULTIPLEX
 popd rem "%~dp0ComfyUI\models\checkpoints"
+
+call :ASK_EXTRA_CHECKPOINTS
+if %ERRORLEVEL% neq 0 ( exit /b 1 )
 
 pushd "%~dp0ComfyUI\models\loras"
 if exist anima-turbo-lora-v0.1.safetensors ( goto :EXIST_ANIMA_TURBO_LORA )
@@ -92,6 +104,7 @@ if %ERRORLEVEL% neq 0 ( popd & exit /b 1 )
 popd rem "%~dp0ComfyUI\user\default\workflows"
 
 echo EasyAnima AllInOne setup completed.>"%ALL_IN_ONE_MARKER%"
+echo ExtraCheckpoints=%EXTRA_CHECKPOINTS_ENABLED%>>"%ALL_IN_ONE_MARKER%"
 echo Run Update.bat to refresh AllInOne components.>>"%ALL_IN_ONE_MARKER%"
 
 exit /b 0
@@ -112,4 +125,41 @@ if exist "%GITHUB_REPO%\requirements.txt" (
 	if !ERRORLEVEL! neq 0 ( pause & endlocal & exit /b 1 )
 	endlocal
 )
+exit /b 0
+
+:ASK_EXTRA_CHECKPOINTS
+if not exist "%ALL_IN_ONE_MARKER%" goto :ASK_EXTRA_CHECKPOINTS_PROMPT
+findstr /C:"ExtraCheckpoints=1" "%ALL_IN_ONE_MARKER%" > NUL
+if %ERRORLEVEL% equ 0 goto :DOWNLOAD_EXTRA_CHECKPOINTS
+exit /b 0
+
+:ASK_EXTRA_CHECKPOINTS_PROMPT
+echo.
+echo Download additional AnimaBase derivative CheckPoints? [y/N]
+set "EXTRA_CHECKPOINTS_YES_OR_NO="
+set /p EXTRA_CHECKPOINTS_YES_OR_NO=
+
+if /i "%EXTRA_CHECKPOINTS_YES_OR_NO%"=="y" goto :DOWNLOAD_EXTRA_CHECKPOINTS
+if /i "%EXTRA_CHECKPOINTS_YES_OR_NO%"=="yes" goto :DOWNLOAD_EXTRA_CHECKPOINTS
+
+exit /b 0
+
+:DOWNLOAD_EXTRA_CHECKPOINTS
+pushd "%~dp0ComfyUI\models\checkpoints"
+if exist animayume_v05.safetensors ( goto :EXIST_ANIMAYUME_V05 )
+call "%CIVITAI_MODEL_DOWNLOAD%" ".\" "animayume_v05.safetensors" "2385278" "2963515"
+if %ERRORLEVEL% neq 0 ( popd & exit /b 1 )
+:EXIST_ANIMAYUME_V05
+
+if exist copycatAnima_20260519.safetensors ( goto :EXIST_COPYCAT_ANIMA_20260519 )
+call "%CIVITAI_MODEL_DOWNLOAD%" ".\" "copycatAnima_20260519.safetensors" "2377376" "2959156"
+if %ERRORLEVEL% neq 0 ( popd & exit /b 1 )
+:EXIST_COPYCAT_ANIMA_20260519
+
+if exist silvermoonmixAnima_v10.safetensors ( goto :EXIST_SILVERMOONMIX_ANIMA_V10 )
+call "%CIVITAI_MODEL_DOWNLOAD%" ".\" "silvermoonmixAnima_v10.safetensors" "2639339" "2963435"
+if %ERRORLEVEL% neq 0 ( popd & exit /b 1 )
+:EXIST_SILVERMOONMIX_ANIMA_V10
+popd rem "%~dp0ComfyUI\models\checkpoints"
+set "EXTRA_CHECKPOINTS_ENABLED=1"
 exit /b 0

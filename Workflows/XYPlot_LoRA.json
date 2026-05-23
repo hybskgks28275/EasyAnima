@@ -1,0 +1,874 @@
+{
+  "id": "anima_baseV10-minimum",
+  "revision": 0,
+  "last_node_id": 18,
+  "last_link_id": 26,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "UNETLoader",
+      "pos": [
+        80,
+        80
+      ],
+      "size": [
+        360,
+        82
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            1
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.22.0",
+        "Node name for S&R": "UNETLoader"
+      },
+      "widgets_values": [
+        "anima_baseV10.safetensors",
+        "default"
+      ]
+    },
+    {
+      "id": 3,
+      "type": "CLIPLoader",
+      "pos": [
+        80,
+        220
+      ],
+      "size": [
+        315,
+        106
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            3,
+            4
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.22.0",
+        "Node name for S&R": "CLIPLoader"
+      },
+      "widgets_values": [
+        "qwen_3_06b_base.safetensors",
+        "stable_diffusion",
+        "default"
+      ]
+    },
+    {
+      "id": 6,
+      "type": "EmptyLatentImage",
+      "pos": [
+        80,
+        420
+      ],
+      "size": [
+        210,
+        106
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            7
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.22.0",
+        "Node name for S&R": "EmptyLatentImage"
+      },
+      "widgets_values": [
+        896,
+        1152,
+        1
+      ]
+    },
+    {
+      "id": 8,
+      "type": "VAELoader",
+      "pos": [
+        1358.5900000000033,
+        491.53
+      ],
+      "size": [
+        270,
+        58
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": [
+            9
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.22.0",
+        "Node name for S&R": "VAELoader"
+      },
+      "widgets_values": [
+        "qwen_image_vae.safetensors"
+      ]
+    },
+    {
+      "id": 9,
+      "type": "VAEDecode",
+      "pos": [
+        1718.5900000000033,
+        211.53000000000006
+      ],
+      "size": [
+        140,
+        46
+      ],
+      "flags": {},
+      "order": 12,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 8
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 9
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            11
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.22.0",
+        "Node name for S&R": "VAEDecode"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 10,
+      "type": "SaveImage",
+      "pos": [
+        2160.6875611456007,
+        209.05066115702485
+      ],
+      "size": [
+        270,
+        270
+      ],
+      "flags": {},
+      "order": 14,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 12
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.22.0",
+        "Node name for S&R": "SaveImage"
+      },
+      "widgets_values": [
+        "grid"
+      ]
+    },
+    {
+      "id": 12,
+      "type": "XYPlotRender",
+      "pos": [
+        1867.2826048525606,
+        210.13964017906423
+      ],
+      "size": [
+        280.408203125,
+        186
+      ],
+      "flags": {},
+      "order": 13,
+      "mode": 0,
+      "inputs": [
+        {
+          "color_off": "#52395B",
+          "color_on": "#9521c3",
+          "label": "XY plot data",
+          "name": "xy_plot_data",
+          "type": "XY_PLOT_DATA",
+          "link": 20
+        },
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 11
+        },
+        {
+          "label": "config: grid (opt)",
+          "name": "plot_config_grid",
+          "shape": 7,
+          "type": "PLOT_CONFIG_GRID",
+          "link": 19
+        },
+        {
+          "label": "config: header (opt)",
+          "name": "plot_config_header",
+          "shape": 7,
+          "type": "PLOT_CONFIG_HF",
+          "link": null
+        },
+        {
+          "label": "config: footer (opt)",
+          "name": "plot_config_footer",
+          "shape": 7,
+          "type": "PLOT_CONFIG_HF",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "grid",
+          "type": "IMAGE",
+          "links": [
+            12
+          ]
+        },
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "links": [
+            13
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfylab-pack",
+        "ver": "0.0.9",
+        "Node name for S&R": "XYPlotRender"
+      },
+      "widgets_values": [
+        "{dim1}",
+        "{dim2}",
+        true
+      ]
+    },
+    {
+      "id": 13,
+      "type": "SaveImage",
+      "pos": [
+        2437.865233733328,
+        208.6145432104557
+      ],
+      "size": [
+        270,
+        270
+      ],
+      "flags": {},
+      "order": 15,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 13
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.22.0",
+        "Node name for S&R": "SaveImage"
+      },
+      "widgets_values": [
+        "image"
+      ]
+    },
+    {
+      "id": 7,
+      "type": "KSampler",
+      "pos": [
+        1355.5900000000033,
+        184.53000000000003
+      ],
+      "size": [
+        315,
+        262
+      ],
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 25
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 5
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 6
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 7
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            8
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.22.0",
+        "Node name for S&R": "KSampler"
+      },
+      "widgets_values": [
+        1101187174932534,
+        "randomize",
+        30,
+        4,
+        "er_sde",
+        "simple",
+        1
+      ]
+    },
+    {
+      "id": 16,
+      "type": "PlotConfigGrid",
+      "pos": [
+        1679.6108572534818,
+        447.996586602917
+      ],
+      "size": [
+        271.4375,
+        250
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "label": "config: grid",
+          "name": "plot_config_grid",
+          "type": "PLOT_CONFIG_GRID",
+          "links": [
+            19
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfylab-pack",
+        "ver": "0.0.9",
+        "Node name for S&R": "PlotConfigGrid"
+      },
+      "widgets_values": [
+        20,
+        "#b9b9b9",
+        "Roboto-Regular.ttf",
+        30,
+        "#444",
+        30,
+        50,
+        0,
+        0
+      ]
+    },
+    {
+      "id": 2,
+      "type": "ModelSamplingAuraFlow",
+      "pos": [
+        452.0585404623378,
+        75.65355073858592
+      ],
+      "size": [
+        270,
+        58
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 1
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            24
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.22.0",
+        "Node name for S&R": "ModelSamplingAuraFlow"
+      },
+      "widgets_values": [
+        3
+      ]
+    },
+    {
+      "id": 18,
+      "type": "LoraLoaderModelOnly",
+      "pos": [
+        1125.8555912798465,
+        -0.522672475698073
+      ],
+      "size": [
+        270,
+        82
+      ],
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 24
+        },
+        {
+          "name": "lora_name",
+          "type": "COMBO",
+          "widget": {
+            "name": "lora_name"
+          },
+          "link": 26
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            25
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.22.0",
+        "Node name for S&R": "LoraLoaderModelOnly"
+      },
+      "widgets_values": [
+        "anima-turbo-lora-v0.1.safetensors",
+        1
+      ]
+    },
+    {
+      "id": 11,
+      "type": "XYPlotQueue",
+      "pos": [
+        820.5965972222216,
+        -1.9100000000008324
+      ],
+      "size": [
+        280.53125,
+        146
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "dim1",
+          "shape": 6,
+          "type": "LIST",
+          "link": 21
+        },
+        {
+          "label": "dim2 (opt)",
+          "name": "dim2",
+          "shape": 6,
+          "type": "LIST",
+          "link": null
+        },
+        {
+          "name": "max_dim1_per_page",
+          "shape": 7,
+          "type": "INT",
+          "widget": {
+            "name": "max_dim1_per_page"
+          },
+          "link": 22
+        }
+      ],
+      "outputs": [
+        {
+          "color_off": "#52395B",
+          "color_on": "#9521c3",
+          "label": "XY plot data",
+          "name": "xy_plot_data",
+          "type": "XY_PLOT_DATA",
+          "links": [
+            20
+          ]
+        },
+        {
+          "label": "dim1 value",
+          "name": "dim1_value",
+          "type": "*",
+          "links": [
+            26
+          ]
+        },
+        {
+          "label": "dim2 value",
+          "name": "dim2_value",
+          "type": "*",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfylab-pack",
+        "ver": "0.0.9",
+        "Node name for S&R": "XYPlotQueue"
+      },
+      "widgets_values": [
+        -5907959880,
+        0,
+        0
+      ]
+    },
+    {
+      "id": 4,
+      "type": "CLIPTextEncode",
+      "pos": [
+        811.5368305071057,
+        186.56896281302227
+      ],
+      "size": [
+        420,
+        160
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 3
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            5
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.22.0",
+        "Node name for S&R": "CLIPTextEncode"
+      },
+      "widgets_values": [
+        "masterpiece, best quality, score_7, safe, 1girl, original, solo, looking at viewer, anime coloring, detailed eyes, simple background"
+      ]
+    },
+    {
+      "id": 5,
+      "type": "CLIPTextEncode",
+      "pos": [
+        817.4480015026288,
+        395.7523891810668
+      ],
+      "size": [
+        420,
+        120
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 4
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            6
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.22.0",
+        "Node name for S&R": "CLIPTextEncode"
+      },
+      "widgets_values": [
+        "worst quality, low quality, score_1, score_2, score_3, blurry, jpeg artifacts, artist name"
+      ]
+    },
+    {
+      "id": 17,
+      "type": "ListLoras",
+      "pos": [
+        453.1989421438584,
+        -120.44378442160337
+      ],
+      "size": [
+        270,
+        150
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "list",
+          "shape": 6,
+          "type": "LIST",
+          "links": [
+            21
+          ]
+        },
+        {
+          "name": "count",
+          "type": "INT",
+          "links": [
+            22
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfylab-pack",
+        "ver": "0.0.9",
+        "Node name for S&R": "ListLoras"
+      },
+      "widgets_values": [
+        {
+          "selected": []
+        },
+        true,
+        "none"
+      ]
+    }
+  ],
+  "links": [
+    [
+      1,
+      1,
+      0,
+      2,
+      0,
+      "MODEL"
+    ],
+    [
+      3,
+      3,
+      0,
+      4,
+      0,
+      "CLIP"
+    ],
+    [
+      4,
+      3,
+      0,
+      5,
+      0,
+      "CLIP"
+    ],
+    [
+      5,
+      4,
+      0,
+      7,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      6,
+      5,
+      0,
+      7,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      7,
+      6,
+      0,
+      7,
+      3,
+      "LATENT"
+    ],
+    [
+      8,
+      7,
+      0,
+      9,
+      0,
+      "LATENT"
+    ],
+    [
+      9,
+      8,
+      0,
+      9,
+      1,
+      "VAE"
+    ],
+    [
+      11,
+      9,
+      0,
+      12,
+      1,
+      "IMAGE"
+    ],
+    [
+      12,
+      12,
+      0,
+      10,
+      0,
+      "IMAGE"
+    ],
+    [
+      13,
+      12,
+      1,
+      13,
+      0,
+      "IMAGE"
+    ],
+    [
+      19,
+      16,
+      0,
+      12,
+      2,
+      "PLOT_CONFIG_GRID"
+    ],
+    [
+      20,
+      11,
+      0,
+      12,
+      0,
+      "XY_PLOT_DATA"
+    ],
+    [
+      21,
+      17,
+      0,
+      11,
+      0,
+      "LIST"
+    ],
+    [
+      22,
+      17,
+      1,
+      11,
+      2,
+      "INT"
+    ],
+    [
+      24,
+      2,
+      0,
+      18,
+      0,
+      "MODEL"
+    ],
+    [
+      25,
+      18,
+      0,
+      7,
+      0,
+      "MODEL"
+    ],
+    [
+      26,
+      11,
+      1,
+      18,
+      1,
+      "COMBO"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "workflowRendererVersion": "LG",
+    "ds": {
+      "scale": 2.357947691000002,
+      "offset": [
+        -284.48956372054727,
+        161.4454711802987
+      ]
+    },
+    "frontendVersion": "1.43.18"
+  },
+  "version": 0.4
+}

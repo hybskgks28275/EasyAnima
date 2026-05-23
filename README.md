@@ -44,6 +44,8 @@ Anima Base v1.0 だけを使う場合は、`EasyAnimaInstaller.bat` の実行だ
 - 後から追加する場合は、インストール済みフォルダの `EasyAnima/AllInOne.bat` を実行します。
 
 All-in-One インストールでは Civitai から Turbo LoRA を取得するため、どちらの方法でも Civitai API Key が必要です。
+追加の Anima Base 派生 Checkpoint は `AllInOne.bat` の初回確認メッセージで `y` または `yes` を入力した場合のみダウンロードします。
+初回にダウンロードしなかった場合は、以後 `Update.bat` 実行時にも追加の派生 Checkpoint はダウンロードしません。
 `AllInOne.bat` の完了後は `AllInOneInstalled.txt` が作成され、以後 `Update.bat` 実行時にも All-in-One の内容を更新します。
 
 `AllInOne.bat` は `Setup-AnimaBaseV10.bat` の内容に加えて、以下を追加します。
@@ -56,11 +58,20 @@ All-in-One インストールでは Civitai から Turbo LoRA を取得するた
 	- `ltdrdata/was-node-suite-comfyui`
 	- `spacepxl/ComfyUI-Image-Filters`
 	- `kohya-ss/ComfyUI-Anima-LLLite`
+	- `bugltd/ComfyLab-Pack`
+	- `hybskgks28275/ComfyUI-hybs-nodes`
 - LoRA
 	- `ComfyUI/models/loras/anima-turbo-lora-v0.1.safetensors`
 	- Civitai API Key が必要です。
 - checkpoint
 	- `ComfyUI/models/checkpoints/sam3.1_multiplex_fp16.safetensors`
+- optional checkpoint
+	- `ComfyUI/models/checkpoints/animayume_v05.safetensors`
+	- `ComfyUI/models/checkpoints/copycatAnima_20260519.safetensors`
+	- `ComfyUI/models/checkpoints/silvermoonmixAnima_v10.safetensors`
+	- `AllInOne.bat` の初回確認メッセージで `y` または `yes` を入力した場合のみダウンロードします。
+	- ダウンロードした場合は `AllInOneInstalled.txt` に `ExtraCheckpoints=1` が記録され、以後の `Update.bat` でも更新対象になります。
+	- Civitai API Key が必要です。
 - ControlNet
 	- `ComfyUI/models/controlnet/anima-lllite-any-test-like-v2.safetensors`
 	- `ComfyUI/models/controlnet/anima-lllite-inpainting-v2.safetensors`
@@ -120,8 +131,28 @@ All-in-One インストールでは Civitai から Turbo LoRA を取得するた
 - `Upscale.json`
 	- 読み込んだ画像を latent に戻して再生成し、RTX Video Super Resolution で拡大するサンプルです。
 	- `Nvidia_RTX_Nodes_ComfyUI` を使用します。
+- `XYPlot_CheckPoint.json`
+	- Checkpoint を切り替えて比較する XY Plot サンプルです。
+	- `ComfyLab-Pack` と `ComfyUI-hybs-nodes` を使用します。
+- `XYPlot_LoRA.json`
+	- LoRA の条件を切り替えて比較する XY Plot サンプルです。
+	- `ComfyLab-Pack` を使用します。
+- `XYPlot_Prompt.json`
+	- prompt の条件を切り替えて比較する XY Plot サンプルです。
+	- `ComfyLab-Pack` を使用します。
 
 ## 主な更新
+
+### 2026/05/23
+
+- XY Plot 系のサンプル workflow を追加しました。
+	- `XYPlot_CheckPoint.json`
+	- `XYPlot_LoRA.json`
+	- `XYPlot_Prompt.json`
+- All-in-One セットアップに追加カスタムノードを追加しました。
+	- `bugltd/ComfyLab-Pack`
+	- `hybskgks28275/ComfyUI-hybs-nodes`
+- `AllInOne.bat` で確認メッセージに `y` または `yes` を入力した場合のみ、追加の Anima Base 派生 Checkpoint をダウンロードするようにしました。
 
 ### 2026/05/21
 

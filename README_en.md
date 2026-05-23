@@ -44,6 +44,8 @@ If you want to use all sample workflows, run the All-in-One installation.
 - To add it later, run `EasyAnima/AllInOne.bat` from the installed folder.
 
 All-in-One installation requires a Civitai API Key in either path because it downloads the Turbo LoRA from Civitai.
+Additional Anima Base derivative checkpoints are downloaded only when you enter `y` or `yes` at the first `AllInOne.bat` prompt.
+If you do not download them on the first run, later `Update.bat` runs will not download the additional derivative checkpoints either.
 After `AllInOne.bat` completes, it creates `AllInOneInstalled.txt`, and later `Update.bat` runs the All-in-One update path as well.
 
 `AllInOne.bat` adds the following files on top of `Setup-AnimaBaseV10.bat`.
@@ -56,11 +58,20 @@ After `AllInOne.bat` completes, it creates `AllInOneInstalled.txt`, and later `U
 	- `ltdrdata/was-node-suite-comfyui`
 	- `spacepxl/ComfyUI-Image-Filters`
 	- `kohya-ss/ComfyUI-Anima-LLLite`
+	- `bugltd/ComfyLab-Pack`
+	- `hybskgks28275/ComfyUI-hybs-nodes`
 - LoRA
 	- `ComfyUI/models/loras/anima-turbo-lora-v0.1.safetensors`
 	- Requires a Civitai API Key.
 - checkpoint
 	- `ComfyUI/models/checkpoints/sam3.1_multiplex_fp16.safetensors`
+- optional checkpoint
+	- `ComfyUI/models/checkpoints/animayume_v05.safetensors`
+	- `ComfyUI/models/checkpoints/copycatAnima_20260519.safetensors`
+	- `ComfyUI/models/checkpoints/silvermoonmixAnima_v10.safetensors`
+	- Downloaded only when you enter `y` or `yes` at the first `AllInOne.bat` prompt.
+	- If downloaded, `ExtraCheckpoints=1` is recorded in `AllInOneInstalled.txt`, and later `Update.bat` runs keep them updated.
+	- Requires a Civitai API Key.
 - ControlNet
 	- `ComfyUI/models/controlnet/anima-lllite-any-test-like-v2.safetensors`
 	- `ComfyUI/models/controlnet/anima-lllite-inpainting-v2.safetensors`
@@ -120,8 +131,28 @@ After `AllInOne.bat` completes, it creates `AllInOneInstalled.txt`, and later `U
 - `Upscale.json`
 	- Sample workflow for loading an image, encoding it back to latent, regenerating it, and upscaling with RTX Video Super Resolution.
 	- Uses `Nvidia_RTX_Nodes_ComfyUI`.
+- `XYPlot_CheckPoint.json`
+	- XY Plot sample for comparing different checkpoints.
+	- Uses `ComfyLab-Pack` and `ComfyUI-hybs-nodes`.
+- `XYPlot_LoRA.json`
+	- XY Plot sample for comparing different LoRA settings.
+	- Uses `ComfyLab-Pack`.
+- `XYPlot_Prompt.json`
+	- XY Plot sample for comparing different prompt settings.
+	- Uses `ComfyLab-Pack`.
 
 ## Major Updates
+
+### 2026/05/23
+
+- Added XY Plot sample workflows.
+	- `XYPlot_CheckPoint.json`
+	- `XYPlot_LoRA.json`
+	- `XYPlot_Prompt.json`
+- Added extra custom nodes to the All-in-One setup.
+	- `bugltd/ComfyLab-Pack`
+	- `hybskgks28275/ComfyUI-hybs-nodes`
+- Changed `AllInOne.bat` to download additional Anima Base derivative checkpoints only when you enter `y` or `yes` at the prompt.
 
 ### 2026/05/21
 
