@@ -44,7 +44,8 @@ If you want to use all sample workflows, run the All-in-One installation.
 - To add it later, run `EasyAnima/AllInOne.bat` from the installed folder.
 
 All-in-One installation requires a Civitai API Key in either path because it downloads the Turbo LoRA from Civitai.
-Additional Anima Base derivative checkpoints are downloaded only when you enter `y` or `yes` at the `AllInOne.bat` prompt.
+Additional Anima Base derivative checkpoints are downloaded only when you enter `y` or `yes` at the first `AllInOne.bat` prompt.
+If you do not download them on the first run, later `Update.bat` runs will not download the additional derivative checkpoints either.
 After `AllInOne.bat` completes, it creates `AllInOneInstalled.txt`, and later `Update.bat` runs the All-in-One update path as well.
 
 `AllInOne.bat` adds the following files on top of `Setup-AnimaBaseV10.bat`.
@@ -68,7 +69,8 @@ After `AllInOne.bat` completes, it creates `AllInOneInstalled.txt`, and later `U
 	- `ComfyUI/models/checkpoints/animayume_v05.safetensors`
 	- `ComfyUI/models/checkpoints/copycatAnima_20260519.safetensors`
 	- `ComfyUI/models/checkpoints/silvermoonmixAnima_v10.safetensors`
-	- Downloaded only when you enter `y` or `yes` at the `AllInOne.bat` prompt.
+	- Downloaded only when you enter `y` or `yes` at the first `AllInOne.bat` prompt.
+	- If downloaded, `AllInOneExtraCheckpoints.txt` is created and later `Update.bat` runs keep them updated.
 	- Requires a Civitai API Key.
 - ControlNet
 	- `ComfyUI/models/controlnet/anima-lllite-any-test-like-v2.safetensors`

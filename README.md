@@ -44,7 +44,8 @@ Anima Base v1.0 だけを使う場合は、`EasyAnimaInstaller.bat` の実行だ
 - 後から追加する場合は、インストール済みフォルダの `EasyAnima/AllInOne.bat` を実行します。
 
 All-in-One インストールでは Civitai から Turbo LoRA を取得するため、どちらの方法でも Civitai API Key が必要です。
-追加の Anima Base 派生 Checkpoint は `AllInOne.bat` の確認メッセージで `y` または `yes` を入力した場合のみダウンロードします。
+追加の Anima Base 派生 Checkpoint は `AllInOne.bat` の初回確認メッセージで `y` または `yes` を入力した場合のみダウンロードします。
+初回にダウンロードしなかった場合は、以後 `Update.bat` 実行時にも追加の派生 Checkpoint はダウンロードしません。
 `AllInOne.bat` の完了後は `AllInOneInstalled.txt` が作成され、以後 `Update.bat` 実行時にも All-in-One の内容を更新します。
 
 `AllInOne.bat` は `Setup-AnimaBaseV10.bat` の内容に加えて、以下を追加します。
@@ -68,7 +69,8 @@ All-in-One インストールでは Civitai から Turbo LoRA を取得するた
 	- `ComfyUI/models/checkpoints/animayume_v05.safetensors`
 	- `ComfyUI/models/checkpoints/copycatAnima_20260519.safetensors`
 	- `ComfyUI/models/checkpoints/silvermoonmixAnima_v10.safetensors`
-	- `AllInOne.bat` の確認メッセージで `y` または `yes` を入力した場合のみダウンロードします。
+	- `AllInOne.bat` の初回確認メッセージで `y` または `yes` を入力した場合のみダウンロードします。
+	- ダウンロードした場合は `AllInOneExtraCheckpoints.txt` が作成され、以後の `Update.bat` でも更新対象になります。
 	- Civitai API Key が必要です。
 - ControlNet
 	- `ComfyUI/models/controlnet/anima-lllite-any-test-like-v2.safetensors`

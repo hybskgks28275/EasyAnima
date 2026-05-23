@@ -5,6 +5,7 @@ set GITHUB_CLONE_OR_PULL_HASH=%EASY_TOOLS%\Git\GitHub_CloneOrPull_Hash.bat
 set CIVITAI_MODEL_DOWNLOAD=%EASY_TOOLS%\Civitai\Civitai_ModelDownload.bat
 set HUGGING_FACE=%EASY_TOOLS%\Download\HuggingFace.bat
 set "ALL_IN_ONE_MARKER=%~dp0AllInOneInstalled.txt"
+set "ALL_IN_ONE_EXTRA_CHECKPOINTS_MARKER=%~dp0AllInOneExtraCheckpoints.txt"
 
 call "%~dp0Setup-AnimaBaseV10.bat"
 if %ERRORLEVEL% neq 0 ( exit /b 1 )
@@ -126,6 +127,9 @@ if exist "%GITHUB_REPO%\requirements.txt" (
 exit /b 0
 
 :ASK_EXTRA_CHECKPOINTS
+if exist "%ALL_IN_ONE_EXTRA_CHECKPOINTS_MARKER%" goto :DOWNLOAD_EXTRA_CHECKPOINTS
+if exist "%ALL_IN_ONE_MARKER%" exit /b 0
+
 echo.
 echo Download additional AnimaBase derivative CheckPoints? [y/N]
 set "EXTRA_CHECKPOINTS_YES_OR_NO="
@@ -153,4 +157,6 @@ call "%CIVITAI_MODEL_DOWNLOAD%" ".\" "silvermoonmixAnima_v10.safetensors" "26393
 if %ERRORLEVEL% neq 0 ( popd & exit /b 1 )
 :EXIST_SILVERMOONMIX_ANIMA_V10
 popd rem "%~dp0ComfyUI\models\checkpoints"
+echo EasyAnima AllInOne extra checkpoints enabled.>"%ALL_IN_ONE_EXTRA_CHECKPOINTS_MARKER%"
+echo Run Update.bat to refresh extra checkpoints.>>"%ALL_IN_ONE_EXTRA_CHECKPOINTS_MARKER%"
 exit /b 0
