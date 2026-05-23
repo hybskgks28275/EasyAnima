@@ -70,7 +70,7 @@ After `AllInOne.bat` completes, it creates `AllInOneInstalled.txt`, and later `U
 	- `ComfyUI/models/checkpoints/copycatAnima_20260519.safetensors`
 	- `ComfyUI/models/checkpoints/silvermoonmixAnima_v10.safetensors`
 	- Downloaded only when you enter `y` or `yes` at the first `AllInOne.bat` prompt.
-	- If downloaded, `AllInOneExtraCheckpoints.txt` is created and later `Update.bat` runs keep them updated.
+	- If downloaded, `ExtraCheckpoints=1` is recorded in `AllInOneInstalled.txt`, and later `Update.bat` runs keep them updated.
 	- Requires a Civitai API Key.
 - ControlNet
 	- `ComfyUI/models/controlnet/anima-lllite-any-test-like-v2.safetensors`

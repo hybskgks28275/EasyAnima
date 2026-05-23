@@ -70,7 +70,7 @@ All-in-One インストールでは Civitai から Turbo LoRA を取得するた
 	- `ComfyUI/models/checkpoints/copycatAnima_20260519.safetensors`
 	- `ComfyUI/models/checkpoints/silvermoonmixAnima_v10.safetensors`
 	- `AllInOne.bat` の初回確認メッセージで `y` または `yes` を入力した場合のみダウンロードします。
-	- ダウンロードした場合は `AllInOneExtraCheckpoints.txt` が作成され、以後の `Update.bat` でも更新対象になります。
+	- ダウンロードした場合は `AllInOneInstalled.txt` に `ExtraCheckpoints=1` が記録され、以後の `Update.bat` でも更新対象になります。
 	- Civitai API Key が必要です。
 - ControlNet
 	- `ComfyUI/models/controlnet/anima-lllite-any-test-like-v2.safetensors`
