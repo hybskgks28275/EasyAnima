@@ -62,6 +62,7 @@ After `AllInOne.bat` completes, it creates `AllInOneInstalled.txt`, and later `U
 	- `hybskgks28275/ComfyUI-hybs-nodes`
 - LoRA
 	- `ComfyUI/models/loras/anima-turbo-lora-v0.1.safetensors`
+	- `ComfyUI/models/loras/anima-turbo-lora-v0.2.safetensors`
 	- Requires a Civitai API Key.
 - checkpoint
 	- `ComfyUI/models/checkpoints/sam3.1_multiplex_fp16.safetensors`
@@ -121,7 +122,7 @@ After `AllInOne.bat` completes, it creates `AllInOneInstalled.txt`, and later `U
 	- Intended for the initial `896x1152`, steps `30`, CFG `4` test.
 - `AnimaTurboLoRAwithNAG.json`
 	- Fast generation workflow using Anima Turbo LoRA and NAG.
-	- Uses `ComfyUI-Anima-NAG`, `ComfyUI-Anima-Enhancer`, and `anima-turbo-lora-v0.1.safetensors`.
+	- Uses `ComfyUI-Anima-NAG`, `ComfyUI-Anima-Enhancer`, and `anima-turbo-lora-v0.2.safetensors`.
 - `CN-anytest-like.json`
 	- ControlNet sample using the Anima-LLLite any-test-like model.
 	- Uses `ComfyUI-Anima-LLLite`, `anima-lllite-any-test-like-v2.safetensors`, and `anytest.png`.
@@ -144,6 +145,10 @@ After `AllInOne.bat` completes, it creates `AllInOneInstalled.txt`, and later `U
 ## Major Updates
 
 ### 2026/05/23
+
+- Added Anima Turbo LoRA v0.2 to the All-in-One setup download.
+	- The v0.1 download is kept.
+	- Sample workflows using Turbo LoRA now reference v0.2.
 
 - Added XY Plot sample workflows.
 	- `XYPlot_CheckPoint.json`

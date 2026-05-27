@@ -62,6 +62,7 @@ All-in-One インストールでは Civitai から Turbo LoRA を取得するた
 	- `hybskgks28275/ComfyUI-hybs-nodes`
 - LoRA
 	- `ComfyUI/models/loras/anima-turbo-lora-v0.1.safetensors`
+	- `ComfyUI/models/loras/anima-turbo-lora-v0.2.safetensors`
 	- Civitai API Key が必要です。
 - checkpoint
 	- `ComfyUI/models/checkpoints/sam3.1_multiplex_fp16.safetensors`
@@ -121,7 +122,7 @@ All-in-One インストールでは Civitai から Turbo LoRA を取得するた
 	- `896x1152`, steps `30`, CFG `4` の初期検証向けです。
 - `AnimaTurboLoRAwithNAG.json`
 	- Anima Turbo LoRA と NAG を使った高速生成向け workflow です。
-	- `ComfyUI-Anima-NAG`、`ComfyUI-Anima-Enhancer`、`anima-turbo-lora-v0.1.safetensors` を使用します。
+	- `ComfyUI-Anima-NAG`、`ComfyUI-Anima-Enhancer`、`anima-turbo-lora-v0.2.safetensors` を使用します。
 - `CN-anytest-like.json`
 	- Anima-LLLite の any-test-like モデルを使う ControlNet サンプルです。
 	- `ComfyUI-Anima-LLLite`、`anima-lllite-any-test-like-v2.safetensors`、`anytest.png` を使用します。
@@ -144,6 +145,10 @@ All-in-One インストールでは Civitai から Turbo LoRA を取得するた
 ## 主な更新
 
 ### 2026/05/23
+
+- All-in-One セットアップで Anima Turbo LoRA v0.2 を追加ダウンロードするようにしました。
+	- v0.1 のダウンロードは維持しています。
+	- Turbo LoRA を使うサンプル workflow は v0.2 を参照するように変更しました。
 
 - XY Plot 系のサンプル workflow を追加しました。
 	- `XYPlot_CheckPoint.json`
