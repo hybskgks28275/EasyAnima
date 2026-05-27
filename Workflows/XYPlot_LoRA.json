@@ -508,7 +508,7 @@
         "Node name for S&R": "LoraLoaderModelOnly"
       },
       "widgets_values": [
-        "anima-turbo-lora-v0.1.safetensors",
+        "anima-turbo-lora-v0.2.safetensors",
         1
       ]
     },

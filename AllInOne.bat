@@ -73,10 +73,15 @@ call :ASK_EXTRA_CHECKPOINTS
 if %ERRORLEVEL% neq 0 ( exit /b 1 )
 
 pushd "%~dp0ComfyUI\models\loras"
-if exist anima-turbo-lora-v0.1.safetensors ( goto :EXIST_ANIMA_TURBO_LORA )
+if exist anima-turbo-lora-v0.1.safetensors ( goto :EXIST_ANIMA_TURBO_LORA_V01 )
 call "%CIVITAI_MODEL_DOWNLOAD%" ".\" "anima-turbo-lora-v0.1.safetensors" "2560840" "2877687"
 if %ERRORLEVEL% neq 0 ( popd & exit /b 1 )
-:EXIST_ANIMA_TURBO_LORA
+:EXIST_ANIMA_TURBO_LORA_V01
+
+if exist anima-turbo-lora-v0.2.safetensors ( goto :EXIST_ANIMA_TURBO_LORA_V02 )
+call "%CIVITAI_MODEL_DOWNLOAD%" ".\" "anima-turbo-lora-v0.2.safetensors" "2560840" "2979642"
+if %ERRORLEVEL% neq 0 ( popd & exit /b 1 )
+:EXIST_ANIMA_TURBO_LORA_V02
 popd rem "%~dp0ComfyUI\models\loras"
 
 pushd "%~dp0ComfyUI\models\controlnet"
