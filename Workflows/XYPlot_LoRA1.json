@@ -1,8 +1,8 @@
 {
   "id": "anima_baseV10-minimum",
   "revision": 0,
-  "last_node_id": 18,
-  "last_link_id": 26,
+  "last_node_id": 21,
+  "last_link_id": 42,
   "nodes": [
     {
       "id": 1,
@@ -39,42 +39,6 @@
       ]
     },
     {
-      "id": 3,
-      "type": "CLIPLoader",
-      "pos": [
-        80,
-        220
-      ],
-      "size": [
-        315,
-        106
-      ],
-      "flags": {},
-      "order": 1,
-      "mode": 0,
-      "inputs": [],
-      "outputs": [
-        {
-          "name": "CLIP",
-          "type": "CLIP",
-          "links": [
-            3,
-            4
-          ]
-        }
-      ],
-      "properties": {
-        "cnr_id": "comfy-core",
-        "ver": "0.22.0",
-        "Node name for S&R": "CLIPLoader"
-      },
-      "widgets_values": [
-        "qwen_3_06b_base.safetensors",
-        "stable_diffusion",
-        "default"
-      ]
-    },
-    {
       "id": 6,
       "type": "EmptyLatentImage",
       "pos": [
@@ -86,7 +50,7 @@
         106
       ],
       "flags": {},
-      "order": 2,
+      "order": 1,
       "mode": 0,
       "inputs": [],
       "outputs": [
@@ -121,7 +85,7 @@
         58
       ],
       "flags": {},
-      "order": 3,
+      "order": 2,
       "mode": 0,
       "inputs": [],
       "outputs": [
@@ -154,7 +118,7 @@
         46
       ],
       "flags": {},
-      "order": 12,
+      "order": 13,
       "mode": 0,
       "inputs": [
         {
@@ -196,7 +160,7 @@
         270
       ],
       "flags": {},
-      "order": 14,
+      "order": 15,
       "mode": 0,
       "inputs": [
         {
@@ -227,7 +191,7 @@
         186
       ],
       "flags": {},
-      "order": 13,
+      "order": 14,
       "mode": 0,
       "inputs": [
         {
@@ -236,7 +200,7 @@
           "label": "XY plot data",
           "name": "xy_plot_data",
           "type": "XY_PLOT_DATA",
-          "link": 20
+          "link": 30
         },
         {
           "name": "image",
@@ -282,9 +246,10 @@
         }
       ],
       "properties": {
-        "cnr_id": "comfylab-pack",
+        "aux_id": "bugltd/ComfyLab-Pack",
         "ver": "0.0.9",
-        "Node name for S&R": "XYPlotRender"
+        "Node name for S&R": "XYPlotRender",
+        "cnr_id": "comfylab-pack"
       },
       "widgets_values": [
         "{dim1}",
@@ -304,7 +269,7 @@
         270
       ],
       "flags": {},
-      "order": 15,
+      "order": 16,
       "mode": 0,
       "inputs": [
         {
@@ -335,13 +300,13 @@
         262
       ],
       "flags": {},
-      "order": 11,
+      "order": 12,
       "mode": 0,
       "inputs": [
         {
           "name": "model",
           "type": "MODEL",
-          "link": 25
+          "link": 33
         },
         {
           "name": "positive",
@@ -357,6 +322,14 @@
           "name": "latent_image",
           "type": "LATENT",
           "link": 7
+        },
+        {
+          "name": "seed",
+          "type": "INT",
+          "widget": {
+            "name": "seed"
+          },
+          "link": 42
         }
       ],
       "outputs": [
@@ -395,7 +368,7 @@
         250
       ],
       "flags": {},
-      "order": 4,
+      "order": 3,
       "mode": 0,
       "inputs": [],
       "outputs": [
@@ -409,9 +382,10 @@
         }
       ],
       "properties": {
-        "cnr_id": "comfylab-pack",
+        "aux_id": "bugltd/ComfyLab-Pack",
         "ver": "0.0.9",
-        "Node name for S&R": "PlotConfigGrid"
+        "Node name for S&R": "PlotConfigGrid",
+        "cnr_id": "comfylab-pack"
       },
       "widgets_values": [
         20,
@@ -421,168 +395,6 @@
         "#444",
         30,
         50,
-        0,
-        0
-      ]
-    },
-    {
-      "id": 2,
-      "type": "ModelSamplingAuraFlow",
-      "pos": [
-        452.0585404623378,
-        75.65355073858592
-      ],
-      "size": [
-        270,
-        58
-      ],
-      "flags": {},
-      "order": 6,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "model",
-          "type": "MODEL",
-          "link": 1
-        }
-      ],
-      "outputs": [
-        {
-          "name": "MODEL",
-          "type": "MODEL",
-          "links": [
-            24
-          ]
-        }
-      ],
-      "properties": {
-        "cnr_id": "comfy-core",
-        "ver": "0.22.0",
-        "Node name for S&R": "ModelSamplingAuraFlow"
-      },
-      "widgets_values": [
-        3
-      ]
-    },
-    {
-      "id": 18,
-      "type": "LoraLoaderModelOnly",
-      "pos": [
-        1125.8555912798465,
-        -0.522672475698073
-      ],
-      "size": [
-        270,
-        82
-      ],
-      "flags": {},
-      "order": 10,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "model",
-          "type": "MODEL",
-          "link": 24
-        },
-        {
-          "name": "lora_name",
-          "type": "COMBO",
-          "widget": {
-            "name": "lora_name"
-          },
-          "link": 26
-        }
-      ],
-      "outputs": [
-        {
-          "name": "MODEL",
-          "type": "MODEL",
-          "links": [
-            25
-          ]
-        }
-      ],
-      "properties": {
-        "cnr_id": "comfy-core",
-        "ver": "0.22.0",
-        "Node name for S&R": "LoraLoaderModelOnly"
-      },
-      "widgets_values": [
-        "anima-turbo-lora-v0.2.safetensors",
-        1
-      ]
-    },
-    {
-      "id": 11,
-      "type": "XYPlotQueue",
-      "pos": [
-        820.5965972222216,
-        -1.9100000000008324
-      ],
-      "size": [
-        280.53125,
-        146
-      ],
-      "flags": {},
-      "order": 9,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "dim1",
-          "shape": 6,
-          "type": "LIST",
-          "link": 21
-        },
-        {
-          "label": "dim2 (opt)",
-          "name": "dim2",
-          "shape": 6,
-          "type": "LIST",
-          "link": null
-        },
-        {
-          "name": "max_dim1_per_page",
-          "shape": 7,
-          "type": "INT",
-          "widget": {
-            "name": "max_dim1_per_page"
-          },
-          "link": 22
-        }
-      ],
-      "outputs": [
-        {
-          "color_off": "#52395B",
-          "color_on": "#9521c3",
-          "label": "XY plot data",
-          "name": "xy_plot_data",
-          "type": "XY_PLOT_DATA",
-          "links": [
-            20
-          ]
-        },
-        {
-          "label": "dim1 value",
-          "name": "dim1_value",
-          "type": "*",
-          "links": [
-            26
-          ]
-        },
-        {
-          "label": "dim2 value",
-          "name": "dim2_value",
-          "type": "*",
-          "links": null
-        }
-      ],
-      "properties": {
-        "cnr_id": "comfylab-pack",
-        "ver": "0.0.9",
-        "Node name for S&R": "XYPlotQueue"
-      },
-      "widgets_values": [
-        -5907959880,
         0,
         0
       ]
@@ -599,13 +411,13 @@
         160
       ],
       "flags": {},
-      "order": 7,
+      "order": 10,
       "mode": 0,
       "inputs": [
         {
           "name": "clip",
           "type": "CLIP",
-          "link": 3
+          "link": 34
         }
       ],
       "outputs": [
@@ -638,13 +450,13 @@
         120
       ],
       "flags": {},
-      "order": 8,
+      "order": 11,
       "mode": 0,
       "inputs": [
         {
           "name": "clip",
           "type": "CLIP",
-          "link": 4
+          "link": 35
         }
       ],
       "outputs": [
@@ -666,15 +478,156 @@
       ]
     },
     {
-      "id": 17,
-      "type": "ListLoras",
+      "id": 2,
+      "type": "ModelSamplingAuraFlow",
       "pos": [
-        453.1989421438584,
-        -120.44378442160337
+        452.0585404623378,
+        75.65355073858592
       ],
       "size": [
         270,
-        150
+        58
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 1
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            31
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.22.0",
+        "Node name for S&R": "ModelSamplingAuraFlow"
+      },
+      "widgets_values": [
+        3
+      ]
+    },
+    {
+      "id": 3,
+      "type": "CLIPLoader",
+      "pos": [
+        80,
+        220
+      ],
+      "size": [
+        315,
+        106
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            32
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.22.0",
+        "Node name for S&R": "CLIPLoader"
+      },
+      "widgets_values": [
+        "qwen_3_06b_base.safetensors",
+        "stable_diffusion",
+        "default"
+      ]
+    },
+    {
+      "id": 19,
+      "type": "HYBS_LoadLoRA",
+      "pos": [
+        1113.9418591912597,
+        -3.4016621404943854
+      ],
+      "size": [
+        270,
+        146
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 31
+        },
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 32
+        },
+        {
+          "name": "lora_name",
+          "type": "COMBO",
+          "widget": {
+            "name": "lora_name"
+          },
+          "link": 41
+        }
+      ],
+      "outputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "links": [
+            33
+          ]
+        },
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "links": [
+            34,
+            35
+          ]
+        },
+        {
+          "name": "applied lora",
+          "type": "STRING",
+          "links": null
+        }
+      ],
+      "properties": {
+        "aux_id": "hybskgks28275/ComfyUI-hybs-nodes",
+        "ver": "e6bbfa868d1189ba3b2c0c4330dc788e60b3b926",
+        "Node name for S&R": "HYBS_LoadLoRA"
+      },
+      "widgets_values": [
+        "NONE",
+        1,
+        1
+      ]
+    },
+    {
+      "id": 21,
+      "type": "HYBS_SeedListGenerator",
+      "pos": [
+        499.66010930072895,
+        -57.53858541095078
+      ],
+      "size": [
+        270,
+        78
       ],
       "flags": {},
       "order": 5,
@@ -682,32 +635,157 @@
       "inputs": [],
       "outputs": [
         {
-          "name": "list",
-          "shape": 6,
+          "name": "seed list",
           "type": "LIST",
           "links": [
-            21
+            36
           ]
         },
         {
           "name": "count",
           "type": "INT",
           "links": [
-            22
+            37
           ]
         }
       ],
       "properties": {
-        "cnr_id": "comfylab-pack",
-        "ver": "0.0.9",
-        "Node name for S&R": "ListLoras"
+        "aux_id": "hybskgks28275/ComfyUI-hybs-nodes",
+        "ver": "e6bbfa868d1189ba3b2c0c4330dc788e60b3b926",
+        "Node name for S&R": "HYBS_SeedListGenerator"
       },
       "widgets_values": [
+        1
+      ]
+    },
+    {
+      "id": 11,
+      "type": "XYPlotQueue",
+      "pos": [
+        820.5965972222216,
+        -1.9100000000008324
+      ],
+      "size": [
+        280.53125,
+        146
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
         {
-          "selected": []
+          "name": "dim1",
+          "shape": 6,
+          "type": "LIST",
+          "link": 27
         },
-        true,
-        "none"
+        {
+          "label": "dim2 (opt)",
+          "name": "dim2",
+          "shape": 6,
+          "type": "LIST",
+          "link": 36
+        },
+        {
+          "name": "max_dim1_per_page",
+          "shape": 7,
+          "type": "INT",
+          "widget": {
+            "name": "max_dim1_per_page"
+          },
+          "link": 28
+        },
+        {
+          "name": "max_dim2_per_page",
+          "shape": 7,
+          "type": "INT",
+          "widget": {
+            "name": "max_dim2_per_page"
+          },
+          "link": 37
+        }
+      ],
+      "outputs": [
+        {
+          "color_off": "#52395B",
+          "color_on": "#9521c3",
+          "label": "XY plot data",
+          "name": "xy_plot_data",
+          "type": "XY_PLOT_DATA",
+          "links": [
+            30
+          ]
+        },
+        {
+          "label": "dim1 value",
+          "name": "dim1_value",
+          "type": "*",
+          "links": [
+            41
+          ]
+        },
+        {
+          "label": "dim2 value",
+          "name": "dim2_value",
+          "type": "*",
+          "links": [
+            42
+          ]
+        }
+      ],
+      "properties": {
+        "aux_id": "bugltd/ComfyLab-Pack",
+        "ver": "0.0.9",
+        "Node name for S&R": "XYPlotQueue",
+        "cnr_id": "comfylab-pack"
+      },
+      "widgets_values": [
+        -957971137,
+        0,
+        0
+      ]
+    },
+    {
+      "id": 20,
+      "type": "HYBS_LoRAList",
+      "pos": [
+        501.7232764604929,
+        -242.83865839140526
+      ],
+      "size": [
+        270,
+        130
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "lora names",
+          "type": "LIST",
+          "links": [
+            27
+          ]
+        },
+        {
+          "name": "count",
+          "type": "INT",
+          "links": [
+            28
+          ]
+        }
+      ],
+      "properties": {
+        "aux_id": "hybskgks28275/ComfyUI-hybs-nodes",
+        "ver": "e6bbfa868d1189ba3b2c0c4330dc788e60b3b926",
+        "Node name for S&R": "HYBS_LoRAList"
+      },
+      "widgets_values": [
+        "[null]",
+        1,
+        "NONE",
+        "<select LoRA>"
       ]
     }
   ],
@@ -719,22 +797,6 @@
       2,
       0,
       "MODEL"
-    ],
-    [
-      3,
-      3,
-      0,
-      4,
-      0,
-      "CLIP"
-    ],
-    [
-      4,
-      3,
-      0,
-      5,
-      0,
-      "CLIP"
     ],
     [
       5,
@@ -809,7 +871,23 @@
       "PLOT_CONFIG_GRID"
     ],
     [
+      27,
       20,
+      0,
+      11,
+      0,
+      "LIST"
+    ],
+    [
+      28,
+      20,
+      1,
+      11,
+      2,
+      "INT"
+    ],
+    [
+      30,
       11,
       0,
       12,
@@ -817,44 +895,76 @@
       "XY_PLOT_DATA"
     ],
     [
-      21,
-      17,
-      0,
-      11,
-      0,
-      "LIST"
-    ],
-    [
-      22,
-      17,
-      1,
-      11,
-      2,
-      "INT"
-    ],
-    [
-      24,
+      31,
       2,
       0,
-      18,
+      19,
       0,
       "MODEL"
     ],
     [
-      25,
-      18,
+      32,
+      3,
+      0,
+      19,
+      1,
+      "CLIP"
+    ],
+    [
+      33,
+      19,
       0,
       7,
       0,
       "MODEL"
     ],
     [
-      26,
+      34,
+      19,
+      1,
+      4,
+      0,
+      "CLIP"
+    ],
+    [
+      35,
+      19,
+      1,
+      5,
+      0,
+      "CLIP"
+    ],
+    [
+      36,
+      21,
+      0,
       11,
       1,
-      18,
+      "LIST"
+    ],
+    [
+      37,
+      21,
       1,
+      11,
+      3,
+      "INT"
+    ],
+    [
+      41,
+      11,
+      1,
+      19,
+      2,
       "COMBO"
+    ],
+    [
+      42,
+      11,
+      2,
+      7,
+      4,
+      "INT"
     ]
   ],
   "groups": [],
@@ -862,13 +972,13 @@
   "extra": {
     "workflowRendererVersion": "LG",
     "ds": {
-      "scale": 2.357947691000002,
+      "scale": 1,
       "offset": [
-        -284.48956372054727,
-        161.4454711802987
+        -132.72845995942748,
+        466.8544491828642
       ]
     },
-    "frontendVersion": "1.43.18"
+    "frontendVersion": "1.44.19"
   },
   "version": 0.4
 }

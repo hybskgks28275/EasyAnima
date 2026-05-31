@@ -135,8 +135,11 @@ All-in-One インストールでは Civitai から Turbo LoRA を取得するた
 - `XYPlot_CheckPoint.json`
 	- Checkpoint を切り替えて比較する XY Plot サンプルです。
 	- `ComfyLab-Pack` と `ComfyUI-hybs-nodes` を使用します。
-- `XYPlot_LoRA.json`
-	- LoRA の条件を切り替えて比較する XY Plot サンプルです。
+- `XYPlot_LoRA1.json`
+	- 複数の LoRA を切り替えて比較する XY Plot サンプルです。
+	- `ComfyLab-Pack` と `ComfyUI-hybs-nodes` を使用します。
+- `XYPlot_LoRA2.json`
+	- 1 つの LoRA で strength を切り替えて比較する XY Plot サンプルです。
 	- `ComfyLab-Pack` を使用します。
 - `XYPlot_Prompt.json`
 	- prompt の条件を切り替えて比較する XY Plot サンプルです。
@@ -152,7 +155,8 @@ All-in-One インストールでは Civitai から Turbo LoRA を取得するた
 
 - XY Plot 系のサンプル workflow を追加しました。
 	- `XYPlot_CheckPoint.json`
-	- `XYPlot_LoRA.json`
+	- `XYPlot_LoRA1.json`
+	- `XYPlot_LoRA2.json`
 	- `XYPlot_Prompt.json`
 - All-in-One セットアップに追加カスタムノードを追加しました。
 	- `bugltd/ComfyLab-Pack`

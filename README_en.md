@@ -135,8 +135,11 @@ After `AllInOne.bat` completes, it creates `AllInOneInstalled.txt`, and later `U
 - `XYPlot_CheckPoint.json`
 	- XY Plot sample for comparing different checkpoints.
 	- Uses `ComfyLab-Pack` and `ComfyUI-hybs-nodes`.
-- `XYPlot_LoRA.json`
-	- XY Plot sample for comparing different LoRA settings.
+- `XYPlot_LoRA1.json`
+	- XY Plot sample for comparing multiple LoRAs.
+	- Uses `ComfyLab-Pack` and `ComfyUI-hybs-nodes`.
+- `XYPlot_LoRA2.json`
+	- XY Plot sample for comparing different strength values with one LoRA.
 	- Uses `ComfyLab-Pack`.
 - `XYPlot_Prompt.json`
 	- XY Plot sample for comparing different prompt settings.
@@ -152,7 +155,8 @@ After `AllInOne.bat` completes, it creates `AllInOneInstalled.txt`, and later `U
 
 - Added XY Plot sample workflows.
 	- `XYPlot_CheckPoint.json`
-	- `XYPlot_LoRA.json`
+	- `XYPlot_LoRA1.json`
+	- `XYPlot_LoRA2.json`
 	- `XYPlot_Prompt.json`
 - Added extra custom nodes to the All-in-One setup.
 	- `bugltd/ComfyLab-Pack`
