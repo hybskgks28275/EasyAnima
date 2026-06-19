@@ -1,0 +1,1224 @@
+{
+  "id": "anima_baseV10-minimum",
+  "revision": 0,
+  "last_node_id": 22,
+  "last_link_id": 39,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "UNETLoader",
+      "pos": [
+        80,
+        80
+      ],
+      "size": [
+        360,
+        82
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            1
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.21.1",
+        "Node name for S&R": "UNETLoader"
+      },
+      "widgets_values": [
+        "anima_baseV10.safetensors",
+        "default"
+      ]
+    },
+    {
+      "id": 8,
+      "type": "VAELoader",
+      "pos": [
+        900,
+        500
+      ],
+      "size": [
+        270,
+        58
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": [
+            9
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.21.1",
+        "Node name for S&R": "VAELoader"
+      },
+      "widgets_values": [
+        "qwen_image_vae.safetensors"
+      ]
+    },
+    {
+      "id": 9,
+      "type": "VAEDecode",
+      "pos": [
+        1260,
+        220
+      ],
+      "size": [
+        140,
+        46
+      ],
+      "flags": {},
+      "order": 19,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 8
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 9
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            10
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.21.1",
+        "Node name for S&R": "VAEDecode"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 2,
+      "type": "ModelSamplingAuraFlow",
+      "pos": [
+        480,
+        80
+      ],
+      "size": [
+        270,
+        58
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 1
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            11
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.21.1",
+        "Node name for S&R": "ModelSamplingAuraFlow"
+      },
+      "widgets_values": [
+        3
+      ]
+    },
+    {
+      "id": 12,
+      "type": "LoadImage",
+      "pos": [
+        476.77750740701345,
+        -283.397933881865
+      ],
+      "size": [
+        344,
+        314
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            17,
+            18,
+            19
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": [
+            14
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.21.1",
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "mask.png",
+        "image"
+      ]
+    },
+    {
+      "id": 16,
+      "type": "PairConditioningSetProperties",
+      "pos": [
+        1310.1535632835528,
+        -473.07133043536805
+      ],
+      "size": [
+        281.9,
+        162
+      ],
+      "flags": {},
+      "order": 15,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "positive_NEW",
+          "type": "CONDITIONING",
+          "link": 21
+        },
+        {
+          "name": "negative_NEW",
+          "type": "CONDITIONING",
+          "link": 22
+        },
+        {
+          "name": "mask",
+          "shape": 7,
+          "type": "MASK",
+          "link": 20
+        },
+        {
+          "name": "hooks",
+          "shape": 7,
+          "type": "HOOKS",
+          "link": null
+        },
+        {
+          "name": "timesteps",
+          "shape": 7,
+          "type": "TIMESTEPS_RANGE",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "links": [
+            23
+          ]
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "links": [
+            24
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.25.0",
+        "Node name for S&R": "PairConditioningSetProperties"
+      },
+      "widgets_values": [
+        1,
+        "default"
+      ]
+    },
+    {
+      "id": 15,
+      "type": "MaskFromColor+",
+      "pos": [
+        999.7393290830415,
+        -281.205725688985
+      ],
+      "size": [
+        270,
+        130
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 19
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": [
+            25
+          ]
+        }
+      ],
+      "title": "Red Mask",
+      "properties": {
+        "cnr_id": "comfyui_essentials_mb",
+        "ver": "1.1.2",
+        "Node name for S&R": "MaskFromColor+"
+      },
+      "widgets_values": [
+        237,
+        28,
+        36,
+        0
+      ]
+    },
+    {
+      "id": 5,
+      "type": "CLIPTextEncode",
+      "pos": [
+        1304.5999093627945,
+        17.800030670165924
+      ],
+      "size": [
+        420,
+        120
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 4
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            22
+          ]
+        }
+      ],
+      "title": "Chara1 Negative Prompt",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.21.1",
+        "Node name for S&R": "CLIPTextEncode"
+      },
+      "widgets_values": [
+        "worst quality, low quality, score_1, score_2, score_3, blurry, jpeg artifacts, artist name"
+      ]
+    },
+    {
+      "id": 6,
+      "type": "EmptyLatentImage",
+      "pos": [
+        80,
+        420
+      ],
+      "size": [
+        210,
+        106
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            7
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.21.1",
+        "Node name for S&R": "EmptyLatentImage"
+      },
+      "widgets_values": [
+        1152,
+        896,
+        1
+      ]
+    },
+    {
+      "id": 14,
+      "type": "MaskFromColor+",
+      "pos": [
+        999.1891260116846,
+        -471.0984382046001
+      ],
+      "size": [
+        270,
+        130
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 18
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": [
+            20
+          ]
+        }
+      ],
+      "title": "Blue Mask",
+      "properties": {
+        "cnr_id": "comfyui_essentials_mb",
+        "ver": "1.1.2",
+        "Node name for S&R": "MaskFromColor+"
+      },
+      "widgets_values": [
+        0,
+        162,
+        232,
+        0
+      ]
+    },
+    {
+      "id": 17,
+      "type": "PairConditioningSetPropertiesAndCombine",
+      "pos": [
+        1727.533078647327,
+        -472.8135292942372
+      ],
+      "size": [
+        365.9,
+        202
+      ],
+      "flags": {},
+      "order": 16,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 23
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 24
+        },
+        {
+          "name": "positive_NEW",
+          "type": "CONDITIONING",
+          "link": 26
+        },
+        {
+          "name": "negative_NEW",
+          "type": "CONDITIONING",
+          "link": 27
+        },
+        {
+          "name": "mask",
+          "shape": 7,
+          "type": "MASK",
+          "link": 25
+        },
+        {
+          "name": "hooks",
+          "shape": 7,
+          "type": "HOOKS",
+          "link": null
+        },
+        {
+          "name": "timesteps",
+          "shape": 7,
+          "type": "TIMESTEPS_RANGE",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "links": [
+            32
+          ]
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "links": [
+            33
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.25.0",
+        "Node name for S&R": "PairConditioningSetPropertiesAndCombine"
+      },
+      "widgets_values": [
+        1,
+        "default"
+      ]
+    },
+    {
+      "id": 20,
+      "type": "PairConditioningSetDefaultCombine",
+      "pos": [
+        2114.2717821229767,
+        -472.94204711660313
+      ],
+      "size": [
+        305.9,
+        106
+      ],
+      "flags": {},
+      "order": 17,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 32
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 33
+        },
+        {
+          "name": "positive_DEFAULT",
+          "type": "CONDITIONING",
+          "link": 36
+        },
+        {
+          "name": "negative_DEFAULT",
+          "type": "CONDITIONING",
+          "link": 37
+        },
+        {
+          "name": "hooks",
+          "shape": 7,
+          "type": "HOOKS",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "links": [
+            34
+          ]
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "links": [
+            35
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.25.0",
+        "Node name for S&R": "PairConditioningSetDefaultCombine"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 3,
+      "type": "CLIPLoader",
+      "pos": [
+        80,
+        220
+      ],
+      "size": [
+        315,
+        106
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            3,
+            4,
+            30,
+            31,
+            38,
+            39
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.21.1",
+        "Node name for S&R": "CLIPLoader"
+      },
+      "widgets_values": [
+        "qwen_3_06b_base.safetensors",
+        "stable_diffusion",
+        "default"
+      ]
+    },
+    {
+      "id": 10,
+      "type": "SaveImage",
+      "pos": [
+        1460,
+        220
+      ],
+      "size": [
+        270,
+        270
+      ],
+      "flags": {},
+      "order": 20,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 10
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.21.1",
+        "Node name for S&R": "SaveImage"
+      },
+      "widgets_values": [
+        "anima_baseV10"
+      ]
+    },
+    {
+      "id": 7,
+      "type": "KSampler",
+      "pos": [
+        900,
+        180
+      ],
+      "size": [
+        315,
+        262
+      ],
+      "flags": {},
+      "order": 18,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 12
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 34
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 35
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 7
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            8
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.21.1",
+        "Node name for S&R": "KSampler"
+      },
+      "widgets_values": [
+        787453057485427,
+        "randomize",
+        30,
+        5,
+        "er_sde",
+        "simple",
+        1
+      ]
+    },
+    {
+      "id": 21,
+      "type": "CLIPTextEncode",
+      "pos": [
+        2158.572573669469,
+        -190.16592712063638
+      ],
+      "size": [
+        420,
+        160
+      ],
+      "flags": {},
+      "order": 12,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 38
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            36
+          ]
+        }
+      ],
+      "title": "Base Positive Prompt",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.21.1",
+        "Node name for S&R": "CLIPTextEncode"
+      },
+      "widgets_values": [
+        "masterpiece, best quality, score_6, core_5, safe, 2girls, anime coloring, human stacking, outdorrs, field, grasses, day, blue sky"
+      ]
+    },
+    {
+      "id": 19,
+      "type": "CLIPTextEncode",
+      "pos": [
+        1732.909172117715,
+        15.792113836161878
+      ],
+      "size": [
+        415.50348466502123,
+        122.31731235410899
+      ],
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 31
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            27
+          ]
+        }
+      ],
+      "title": "Chara2 Negative Prompt",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.21.1",
+        "Node name for S&R": "CLIPTextEncode"
+      },
+      "widgets_values": [
+        "worst quality, low quality, score_1, score_2, score_3, blurry, jpeg artifacts, artist name"
+      ]
+    },
+    {
+      "id": 22,
+      "type": "CLIPTextEncode",
+      "pos": [
+        2160.367307242514,
+        16.534203686107965
+      ],
+      "size": [
+        420,
+        120
+      ],
+      "flags": {},
+      "order": 13,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 39
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            37
+          ]
+        }
+      ],
+      "title": "Base Negative Prompt",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.21.1",
+        "Node name for S&R": "CLIPTextEncode"
+      },
+      "widgets_values": [
+        "worst quality, low quality, score_1, score_2, score_3, blurry, jpeg artifacts, artist name"
+      ]
+    },
+    {
+      "id": 11,
+      "type": "AnimaLLLiteApply",
+      "pos": [
+        902.1501841314421,
+        -60.08897200796949
+      ],
+      "size": [
+        304.8482421875,
+        194
+      ],
+      "flags": {},
+      "order": 14,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 11
+        },
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 17
+        },
+        {
+          "name": "mask",
+          "shape": 7,
+          "type": "MASK",
+          "link": 14
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            12
+          ]
+        }
+      ],
+      "properties": {
+        "aux_id": "kohya-ss/ComfyUI-Anima-LLLite",
+        "ver": "c8ad372b3adea39bb1aa37db9e278978bef2c222",
+        "Node name for S&R": "AnimaLLLiteApply"
+      },
+      "widgets_values": [
+        "anima-lllite-regional-exp-v3.safetensors",
+        1,
+        0,
+        0.3,
+        true
+      ]
+    },
+    {
+      "id": 4,
+      "type": "CLIPTextEncode",
+      "pos": [
+        1305.5041810595287,
+        -194.7588477773114
+      ],
+      "size": [
+        420,
+        160
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 3
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            21
+          ]
+        }
+      ],
+      "title": "Chara1 Positive Prompt",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.21.1",
+        "Node name for S&R": "CLIPTextEncode"
+      },
+      "widgets_values": [
+        "masterpiece, best quality, score_6, core_5, safe, 2girls, anime coloring, black hair, long hair, black eyes, medium breasts, white dress, human stacking, from behind, looking back, straddling, spread legs, on person, smile, outdorrs, field, grasses, day, blue sky"
+      ]
+    },
+    {
+      "id": 18,
+      "type": "CLIPTextEncode",
+      "pos": [
+        1730.4285596368675,
+        -191.2842985046112
+      ],
+      "size": [
+        420,
+        160
+      ],
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 30
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            26
+          ]
+        }
+      ],
+      "title": "Chara2 Positive Prompt",
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.21.1",
+        "Node name for S&R": "CLIPTextEncode"
+      },
+      "widgets_values": [
+        "masterpiece, best quality, score_6, core_5, safe, 2girls, anime coloring, brown hair, short hair, black eyes, small breasts, white shirt, short sleeves, denim shorts, human stacking, from behind, looking back, all fours, smile, outdorrs, field, grasses, day, blue sky"
+      ]
+    }
+  ],
+  "links": [
+    [
+      1,
+      1,
+      0,
+      2,
+      0,
+      "MODEL"
+    ],
+    [
+      3,
+      3,
+      0,
+      4,
+      0,
+      "CLIP"
+    ],
+    [
+      4,
+      3,
+      0,
+      5,
+      0,
+      "CLIP"
+    ],
+    [
+      7,
+      6,
+      0,
+      7,
+      3,
+      "LATENT"
+    ],
+    [
+      8,
+      7,
+      0,
+      9,
+      0,
+      "LATENT"
+    ],
+    [
+      9,
+      8,
+      0,
+      9,
+      1,
+      "VAE"
+    ],
+    [
+      10,
+      9,
+      0,
+      10,
+      0,
+      "IMAGE"
+    ],
+    [
+      11,
+      2,
+      0,
+      11,
+      0,
+      "MODEL"
+    ],
+    [
+      12,
+      11,
+      0,
+      7,
+      0,
+      "MODEL"
+    ],
+    [
+      14,
+      12,
+      1,
+      11,
+      2,
+      "MASK"
+    ],
+    [
+      17,
+      12,
+      0,
+      11,
+      1,
+      "IMAGE"
+    ],
+    [
+      18,
+      12,
+      0,
+      14,
+      0,
+      "IMAGE"
+    ],
+    [
+      19,
+      12,
+      0,
+      15,
+      0,
+      "IMAGE"
+    ],
+    [
+      20,
+      14,
+      0,
+      16,
+      2,
+      "MASK"
+    ],
+    [
+      21,
+      4,
+      0,
+      16,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      22,
+      5,
+      0,
+      16,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      23,
+      16,
+      0,
+      17,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      24,
+      16,
+      1,
+      17,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      25,
+      15,
+      0,
+      17,
+      4,
+      "MASK"
+    ],
+    [
+      26,
+      18,
+      0,
+      17,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      27,
+      19,
+      0,
+      17,
+      3,
+      "CONDITIONING"
+    ],
+    [
+      30,
+      3,
+      0,
+      18,
+      0,
+      "CLIP"
+    ],
+    [
+      31,
+      3,
+      0,
+      19,
+      0,
+      "CLIP"
+    ],
+    [
+      32,
+      17,
+      0,
+      20,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      33,
+      17,
+      1,
+      20,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      34,
+      20,
+      0,
+      7,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      35,
+      20,
+      1,
+      7,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      36,
+      21,
+      0,
+      20,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      37,
+      22,
+      0,
+      20,
+      3,
+      "CONDITIONING"
+    ],
+    [
+      38,
+      3,
+      0,
+      21,
+      0,
+      "CLIP"
+    ],
+    [
+      39,
+      3,
+      0,
+      22,
+      0,
+      "CLIP"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "workflowRendererVersion": "LG",
+    "ds": {
+      "scale": 0.8390545288824054,
+      "offset": [
+        -243.74672815055646,
+        479.9905758160187
+      ]
+    },
+    "frontendVersion": "1.45.15"
+  },
+  "version": 0.4
+}

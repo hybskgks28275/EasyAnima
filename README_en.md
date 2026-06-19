@@ -58,6 +58,7 @@ After `AllInOne.bat` completes, it creates `AllInOneInstalled.txt`, and later `U
 	- `ltdrdata/was-node-suite-comfyui`
 	- `spacepxl/ComfyUI-Image-Filters`
 	- `kohya-ss/ComfyUI-Anima-LLLite`
+	- `MinorBoy/ComfyUI_essentials_mb`
 	- `bugltd/ComfyLab-Pack`
 	- `hybskgks28275/ComfyUI-hybs-nodes`
 - LoRA
@@ -76,6 +77,7 @@ After `AllInOne.bat` completes, it creates `AllInOneInstalled.txt`, and later `U
 - ControlNet
 	- `ComfyUI/models/controlnet/anima-lllite-any-test-like-v2.safetensors`
 	- `ComfyUI/models/controlnet/anima-lllite-inpainting-v2.safetensors`
+	- `ComfyUI/models/controlnet/anima-lllite-regional-exp-v3.safetensors`
 - workflow
 	- Copies `Workflows/*.json` to `ComfyUI/user/default/workflows`.
 - input
@@ -126,6 +128,9 @@ After `AllInOne.bat` completes, it creates `AllInOneInstalled.txt`, and later `U
 - `CN-anytest-like.json`
 	- ControlNet sample using the Anima-LLLite any-test-like model.
 	- Uses `ComfyUI-Anima-LLLite`, `anima-lllite-any-test-like-v2.safetensors`, and `anytest.png`.
+- `CN-reginal.json`
+	- ControlNet sample using Anima-LLLite Regional ControlNet.
+	- Uses `ComfyUI-Anima-LLLite`, `ComfyUI_essentials_mb`, `anima-lllite-regional-exp-v3.safetensors`, and `mask.png`.
 - `Detailer.json`
 	- Sample workflow for loading an image, creating masks, converting them to SEGS, and running Detailer processing.
 	- Uses `ComfyUI-Impact-Pack`, `ComfyUI-Image-Filters`, and the SAM 3.1 checkpoint.
@@ -146,6 +151,17 @@ After `AllInOne.bat` completes, it creates `AllInOneInstalled.txt`, and later `U
 	- Uses `ComfyLab-Pack`.
 
 ## Major Updates
+
+### 2026/06/19
+
+- Added a sample workflow.
+	- `CN-reginal.json`
+- Added a sample image.
+	- `mask.png`
+- Added an extra custom node to the All-in-One setup.
+	- `MinorBoy/ComfyUI_essentials_mb`
+- Added the Anima-LLLite Regional ControlNet model to the All-in-One setup download.
+	- `anima-lllite-regional-exp-v3.safetensors`
 
 ### 2026/05/23
 
