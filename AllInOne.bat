@@ -52,6 +52,10 @@ if %ERRORLEVEL% neq 0 ( popd & exit /b 1 )
 call :GITHUB_HASH_REQUIREMENTS kohya-ss ComfyUI-Anima-LLLite main
 if %ERRORLEVEL% neq 0 ( popd & exit /b 1 )
 
+@REM https://github.com/MinorBoy/ComfyUI_essentials_mb
+call :GITHUB_HASH_REQUIREMENTS MinorBoy ComfyUI_essentials_mb main
+if %ERRORLEVEL% neq 0 ( popd & exit /b 1 )
+
 @REM https://github.com/bugltd/ComfyLab-Pack
 call :GITHUB_HASH_REQUIREMENTS bugltd ComfyLab-Pack main
 if %ERRORLEVEL% neq 0 ( popd & exit /b 1 )
@@ -94,6 +98,11 @@ if exist anima-lllite-inpainting-v2.safetensors ( goto :EXIST_ANIMA_LLLITE_INPAI
 call "%HUGGING_FACE%" ".\" "anima-lllite-inpainting-v2.safetensors" "kohya-ss/Anima-LLLite" ""
 if %ERRORLEVEL% neq 0 ( popd & exit /b 1 )
 :EXIST_ANIMA_LLLITE_INPAINTING
+
+if exist anima-lllite-regional-exp-v3.safetensors ( goto :EXIST_ANIMA_LLLITE_REGIONAL_EXP_V3 )
+call "%HUGGING_FACE%" ".\" "anima-lllite-regional-exp-v3.safetensors" "Sen-sou/Anima-LLLite-Regional-Controlnet" ""
+if %ERRORLEVEL% neq 0 ( popd & exit /b 1 )
+:EXIST_ANIMA_LLLITE_REGIONAL_EXP_V3
 popd rem "%~dp0ComfyUI\models\controlnet"
 
 pushd "%~dp0ComfyUI\input"

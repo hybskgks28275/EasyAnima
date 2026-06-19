@@ -58,6 +58,7 @@ All-in-One インストールでは Civitai から Turbo LoRA を取得するた
 	- `ltdrdata/was-node-suite-comfyui`
 	- `spacepxl/ComfyUI-Image-Filters`
 	- `kohya-ss/ComfyUI-Anima-LLLite`
+	- `MinorBoy/ComfyUI_essentials_mb`
 	- `bugltd/ComfyLab-Pack`
 	- `hybskgks28275/ComfyUI-hybs-nodes`
 - LoRA
@@ -76,6 +77,7 @@ All-in-One インストールでは Civitai から Turbo LoRA を取得するた
 - ControlNet
 	- `ComfyUI/models/controlnet/anima-lllite-any-test-like-v2.safetensors`
 	- `ComfyUI/models/controlnet/anima-lllite-inpainting-v2.safetensors`
+	- `ComfyUI/models/controlnet/anima-lllite-regional-exp-v3.safetensors`
 - workflow
 	- `Workflows/*.json` を `ComfyUI/user/default/workflows` にコピーします。
 - input
@@ -126,6 +128,9 @@ All-in-One インストールでは Civitai から Turbo LoRA を取得するた
 - `CN-anytest-like.json`
 	- Anima-LLLite の any-test-like モデルを使う ControlNet サンプルです。
 	- `ComfyUI-Anima-LLLite`、`anima-lllite-any-test-like-v2.safetensors`、`anytest.png` を使用します。
+- `CN-reginal.json`
+	- Anima-LLLite Regional ControlNet を使う ControlNet サンプルです。
+	- `ComfyUI-Anima-LLLite`、`ComfyUI_essentials_mb`、`anima-lllite-regional-exp-v3.safetensors`、`mask.png` を使用します。
 - `Detailer.json`
 	- 読み込んだ画像に対して、マスク作成、SEGS 変換、Detailer 処理を行うサンプルです。
 	- `ComfyUI-Impact-Pack`、`ComfyUI-Image-Filters`、SAM 3.1 checkpoint を使用します。
@@ -146,6 +151,17 @@ All-in-One インストールでは Civitai から Turbo LoRA を取得するた
 	- `ComfyLab-Pack` を使用します。
 
 ## 主な更新
+
+### 2026/06/19
+
+- サンプル workflow を追加しました。
+	- `CN-reginal.json`
+- サンプル画像を追加しました。
+	- `mask.png`
+- All-in-One セットアップに追加カスタムノードを追加しました。
+	- `MinorBoy/ComfyUI_essentials_mb`
+- All-in-One セットアップで Anima-LLLite Regional ControlNet モデルを追加ダウンロードするようにしました。
+	- `anima-lllite-regional-exp-v3.safetensors`
 
 ### 2026/05/23
 
